@@ -7,82 +7,129 @@
 <meta name="description" content="A CO2e measurement and trading platform for farmers, businesses and the people buying from them.">
 <link rel="stylesheet" href="https://use.typekit.net/afn4cft.css">
 <style>
+  /*
+    Palette and type roles below are taken from the confirmed Omega
+    Document (Your-Footprint-Omega-Complete-Draft-v3.pdf, §02/§07/§08):
+    Brand Orange #f17515, Leaf Green Dark/Mid/Light #5aa946/#8fc747/#a8d053,
+    International Blue/Green #2294df/#a1e366, and the five My Footprint
+    status colours. Headline role = Myriad Pro Semibold SemiCondensed,
+    body role = Myriad Pro Regular (both via the site's existing Typekit
+    kit), matching what index.html already loads.
+  */
   :root{
-    --green:#5AA946;
-    --orange:#F17515;
+    --orange:#f17515;
+    --green-dark:#5aa946;
+    --green-mid:#8fc747;
+    --green-light:#a8d053;
+    --intl-blue:#2294df;
+    --intl-green:#a1e366;
     --ink:#2b2b2b;
+    --subhead:#424141;
     --muted:#6b6b6b;
     --line:#e7e4df;
     --paper:#faf9f6;
-    --max:1100px;
+    --max:1140px;
   }
   *{box-sizing:border-box}
-  body{margin:0; font-family:"myriad-pro", Arial, Helvetica, sans-serif; color:var(--ink); background:#fff; line-height:1.55}
+  body{margin:0; font-family:"myriad-pro", Arial, Helvetica, sans-serif; color:var(--ink); background:#fff; line-height:1.6; font-size:17px}
   img{max-width:100%; display:block}
   a{color:inherit; text-decoration:none}
   .wrap{max-width:var(--max); margin:auto; padding:0 24px}
   h1,h2,h3{font-family:"myriad-pro-semi-condensed", Arial, Helvetica, sans-serif; font-weight:700; margin:0; letter-spacing:-.01em}
 
   /* Hero */
-  .hero{padding:64px 0 48px; text-align:center}
-  .hero .logo{width:220px; margin:0 auto 28px}
-  .eyebrow{display:block; font-size:.78rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:14px}
-  .hero h1{font-size:clamp(28px,4.2vw,44px); max-width:18ch; margin:0 auto 18px; color:var(--ink)}
-  .hero p.lede{color:var(--muted); font-size:1.08rem; max-width:52ch; margin:0 auto 32px}
+  .hero{padding:68px 0 52px; text-align:center}
+  .hero .logo{width:340px; margin:0 auto 30px}
+  .eyebrow{display:block; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:14px}
+  .hero h1{font-size:clamp(28px,4.4vw,46px); max-width:20ch; margin:0 auto 20px; color:var(--ink)}
+  .hero p.lede{color:var(--muted); font-size:1.15rem; max-width:58ch; margin:0 auto 34px}
   .cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
-  .btn{display:inline-block; padding:13px 26px; border-radius:8px; font-weight:700; font-size:.95rem}
+  .btn{display:inline-block; padding:14px 28px; border-radius:8px; font-weight:700; font-size:1rem}
   .btn-primary{background:var(--orange); color:#fff}
   .btn-primary:hover{background:#d9630d}
   .btn-outline{border:1.5px solid var(--line); color:var(--ink)}
   .btn-outline:hover{border-color:var(--orange); color:var(--orange)}
 
   /* Region strip */
-  .region-strip{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:26px 0}
-  .region-strip .label{display:block; text-align:center; font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:16px}
-  .region-grid{display:flex; gap:28px; justify-content:center; align-items:center; flex-wrap:wrap}
-  .region-grid a{opacity:.75; transition:opacity .15s}
+  .region-strip{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:30px 0}
+  .region-strip .label{display:block; text-align:center; font-size:.74rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:18px}
+  .region-grid{display:flex; gap:38px; justify-content:center; align-items:center; flex-wrap:wrap}
+  .region-grid a{opacity:.8; transition:opacity .15s}
   .region-grid a:hover{opacity:1}
-  .region-grid img{height:30px; width:auto}
+  .region-grid img{height:48px; width:auto}
+
+  /* About */
+  .about{padding:68px 0; max-width:800px; margin:auto}
+  .about p{color:var(--subhead); font-size:1.08rem; margin:0 0 18px}
+  .about p:last-child{margin-bottom:0}
 
   /* Sections */
-  .section{padding:72px 0}
-  .section-label{display:block; text-align:center; font-size:.78rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--orange); margin-bottom:12px}
-  .section h2{text-align:center; font-size:clamp(24px,3vw,32px); margin-bottom:14px}
-  .section p.lede{text-align:center; color:var(--muted); max-width:56ch; margin:0 auto 48px}
+  .section{padding:76px 0}
+  .section.alt{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .section-label{display:block; text-align:center; font-size:.8rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--orange); margin-bottom:14px}
+  .section h2{text-align:center; font-size:clamp(26px,3.2vw,36px); margin-bottom:16px; color:var(--subhead)}
+  .section p.lede{text-align:center; color:var(--muted); max-width:62ch; margin:0 auto 20px; font-size:1.08rem}
+  .section .body-copy{max-width:700px; margin:0 auto 44px}
+  .section .body-copy p{color:var(--subhead); font-size:1.05rem; margin:0 0 16px}
+  .section .body-copy p:last-child{margin-bottom:0}
 
-  .pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:36px}
-  .pillar{text-align:center; padding:0 12px}
-  .pillar img{height:70px; margin:0 auto 20px}
-  .pillar h3{font-size:1.1rem; margin-bottom:10px}
-  .pillar p{color:var(--muted); font-size:.96rem; margin:0}
+  .pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:44px; margin-top:12px}
+  .pillar{text-align:center; padding:0 14px}
+  .pillar img{height:110px; margin:0 auto 24px}
+  .pillar h3{font-size:1.2rem; margin-bottom:12px; color:var(--subhead)}
+  .pillar p{color:var(--muted); font-size:1rem; margin:0}
 
-  .steps{max-width:640px; margin:auto}
-  .step{display:flex; gap:20px; padding:18px 0; border-top:1px solid var(--line)}
+  .get-list{max-width:620px; margin:40px auto 0}
+  .get-item{display:flex; gap:20px; align-items:flex-start; padding:22px 0; border-top:1px solid var(--line)}
+  .get-item:first-child{border-top:none; padding-top:0}
+  .get-item img{width:54px; height:54px; flex-shrink:0; margin-top:2px}
+  .get-item p{margin:0; color:var(--subhead); font-size:1.03rem; font-style:italic}
+  .get-item .note{color:var(--orange); font-style:normal; font-weight:700}
+
+  .users-row{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:12px}
+  .users-row img{border-radius:16px; width:100%}
+
+  .steps{max-width:680px; margin:40px auto 0}
+  .step{display:flex; gap:22px; padding:18px 0; border-top:1px solid var(--line)}
   .step:first-child{border-top:none}
-  .step-num{font-family:"myriad-pro-semi-condensed",Arial,sans-serif; font-weight:700; font-size:1.3rem; color:var(--orange); width:34px; flex-shrink:0}
-  .step p{margin:0; color:var(--muted)}
+  .step-num{font-family:"myriad-pro-semi-condensed",Arial,sans-serif; font-weight:700; font-size:1.4rem; color:var(--orange); width:36px; flex-shrink:0}
+  .step p{margin:0; color:var(--subhead); font-size:1.03rem}
   .step strong{color:var(--ink)}
+  .step.highlight{background:var(--orange); color:#fff; border-radius:10px; padding:20px 24px; border-top:none; margin:8px 0}
+  .step.highlight p{color:#fff; font-weight:700; font-size:1.1rem}
 
-  .proof{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
-  .proof .wrap{display:flex; gap:40px; align-items:center; flex-wrap:wrap; padding:56px 24px}
-  .proof-logo{flex:0 0 220px; max-width:220px}
-  .proof-text{flex:1; min-width:260px}
+  .royalty-table{max-width:460px; margin:34px auto 0; border:1px solid var(--line); border-radius:12px; overflow:hidden}
+  .royalty-row{display:flex; justify-content:space-between; padding:13px 22px; font-size:.98rem; color:var(--subhead); border-top:1px solid var(--line)}
+  .royalty-row:first-child{border-top:none}
+  .royalty-row strong{color:var(--ink)}
+
+  .proof{padding:0}
+  .proof .wrap{display:flex; gap:48px; align-items:center; flex-wrap:wrap; padding:64px 24px}
+  .proof-logo{flex:0 0 320px; max-width:320px}
+  .proof-text{flex:1; min-width:280px}
   .proof-text .section-label{text-align:left}
-  .proof-text h2{text-align:left; margin-bottom:10px}
-  .proof-text p{color:var(--muted); margin:0 0 18px}
+  .proof-text h2{text-align:left; margin-bottom:12px}
+  .proof-text p{color:var(--muted); margin:0 0 20px; font-size:1.05rem}
 
-  .cta-band{text-align:center; padding:72px 0; background:var(--ink); color:#fff}
-  .cta-band h2{color:#fff; margin-bottom:12px}
-  .cta-band p{color:rgba(255,255,255,.75); margin:0 0 28px}
+  .cta-band{text-align:center; padding:80px 0; background:var(--ink); color:#fff}
+  .cta-band h2{color:#fff; margin-bottom:14px}
+  .cta-band p{color:rgba(255,255,255,.75); margin:0 0 30px; font-size:1.08rem}
   .cta-band .btn-outline{border-color:rgba(255,255,255,.35); color:#fff}
   .cta-band .btn-outline:hover{border-color:var(--orange); color:var(--orange)}
 
-  footer{padding:36px 0; text-align:center; color:var(--muted); font-size:.85rem}
+  footer{padding:40px 0; text-align:center; color:var(--muted); font-size:.9rem}
   footer a{color:var(--orange)}
-  footer .alt-note{margin-top:8px; font-size:.8rem}
+  footer .alt-note{margin-top:10px; font-size:.82rem}
+
+  .divider-leaf{display:flex; justify-content:center; gap:8px; margin:0 0 36px}
+  .divider-leaf span{width:8px; height:8px; border-radius:50%}
+  .divider-leaf span:nth-child(1){background:var(--green-dark)}
+  .divider-leaf span:nth-child(2){background:var(--green-mid)}
+  .divider-leaf span:nth-child(3){background:var(--green-light)}
 
   @media (max-width:760px){
     .pillars{grid-template-columns:1fr; gap:48px}
+    .users-row{grid-template-columns:1fr}
     .proof .wrap{flex-direction:column; text-align:center}
     .proof-text .section-label, .proof-text h2{text-align:center}
   }
@@ -94,7 +141,7 @@
   <section class="hero">
     <div class="wrap">
       <img class="logo" src="./assets/Full Logo YFP int.png" alt="YourFootprint">
-      <span class="eyebrow">Your Footprint</span>
+      <span class="eyebrow">Your Footprint International</span>
       <h1>Make sustainability pay for itself.</h1>
       <p class="lede">A CO2e measurement and trading platform for farmers, businesses and the people buying from them — built on the Green House Gas Protocol.</p>
       <div class="cta-row">
@@ -117,58 +164,139 @@
     </div>
   </div>
 
-  <!-- What we do -->
-  <section class="section">
-    <div class="wrap">
-      <span class="section-label">What We Do</span>
-      <h2>One platform, three audiences.</h2>
-      <p class="lede">Measure CO2e, reduce it, and turn the result into something tradable, certifiable or simply worth knowing.</p>
-      <div class="pillars">
-        <div class="pillar">
-          <img src="./assets/weight.svg" alt="">
-          <h3>Farmers &amp; landowners</h3>
-          <p>See your farm's CO2e status, cut emissions, and trade the carbon credits you generate on our marketplace.</p>
-        </div>
-        <div class="pillar">
-          <img src="./assets/trading.svg" alt="">
-          <h3>Businesses</h3>
-          <p>Calculate your Scope&nbsp;3 footprint, buy verified CO2e credits, and get certified carbon neutral.</p>
-        </div>
-        <div class="pillar">
-          <img src="./assets/boxy.svg" alt="">
-          <h3>Consumers</h3>
-          <p>Check the real, transparent story behind a product's CO2e-neutral claim — free, always.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How it works -->
-  <section class="section" style="padding-top:0;">
-    <div class="wrap">
-      <span class="section-label">How It Works</span>
-      <h2>Four steps to get started.</h2>
-      <div class="steps">
-        <div class="step"><span class="step-num">01</span><p><strong>Sign up</strong> and tell us a little about your farm, business or household.</p></div>
-        <div class="step"><span class="step-num">02</span><p><strong>Answer the questionnaire.</strong> It's how we build your CO2e picture.</p></div>
-        <div class="step"><span class="step-num">03</span><p><strong>Get your overview.</strong> See your CO2e status and any credits you've earned.</p></div>
-        <div class="step"><span class="step-num">04</span><p><strong>Trade, certify, or market</strong> your CO2e-neutral status — whichever applies to you.</p></div>
-      </div>
-    </div>
+  <!-- About -->
+  <section class="about">
+    <p>Your Footprint Ltd. is an innovative company that strives to make farming more sustainable, while maintaining profitability. We have created a Carbon (CO2e) Farming tool, compliant with the Green House Gas Protocol (GHGP) and exceeding government expectations on CO2 Modeling.</p>
+    <p>In addition to our farming tool, we have a built-in CO2e marketplace for the trade of carbon credits farmed by the farmer on their own land. Our goal is to make it profitable for agriculture and landowners to plant more forest and begin farming Carbon as a resource. Companies can also use our tool to calculate their Scope&nbsp;3 CO2e footprint, and then utilise our trading platform to acquire CO2e credits from us and become certified CO2e neutral.</p>
+    <p style="text-align:center; font-style:italic; margin-top:28px;">For more information, contact <a href="mailto:admin@yourfootprint.uk" style="color:var(--orange); font-weight:700;">admin@yourfootprint.uk</a></p>
   </section>
 
   <!-- Proof -->
-  <div class="proof">
+  <div class="section alt proof">
     <div class="wrap">
       <a class="proof-logo" href="http://www.staalbaek.dk" target="_blank"><img src="./assets/staalbaeklogo.png" alt="Stålbæk Gård"></a>
       <div class="proof-text">
         <span class="section-label">Real-World Data</span>
-        <h2>Proven on our own farm.</h2>
+        <h2>Visit our farm for real-world data.</h2>
         <p>Before we ask anyone else to use this, we run it ourselves — our tool is built and tested on Stålbæk Gård, our own working farm in Denmark.</p>
         <a class="btn btn-outline" href="http://www.staalbaek.dk" target="_blank">Visit Stålbæk Gård</a>
       </div>
     </div>
   </div>
+
+  <!-- Farm Business Owners -->
+  <section class="section">
+    <div class="wrap">
+      <div class="divider-leaf"><span></span><span></span><span></span></div>
+      <span class="section-label">Farm Business Owners</span>
+      <h2>For agricultural businesses and environmentalists who own a farm.</h2>
+      <div class="body-copy">
+        <p style="text-align:center;">Looking for a way to reduce your CO2 footprint, reduce production costs and increase revenue? This section is built for you.</p>
+      </div>
+      <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">farm business owners</strong> get using YourFootprint?</p>
+      <div class="get-list">
+        <div class="get-item"><img src="./assets/weight.svg" alt=""><p>An overview of their farm's CO2e status.</p></div>
+        <div class="get-item"><img src="./assets/shopfamilysvg.svg" alt=""><p>CO2e reduction through our CO2e credit trading platform.</p></div>
+        <div class="get-item"><img src="./assets/boxy.svg" alt=""><p>Sustainability accounting for the future. <span class="note">**This section requires a monthly subscription</span></p></div>
+      </div>
+      <p class="lede" style="margin-top:36px;">After taking the YF Questionnaire, you can start using the benefits of the tool.</p>
+    </div>
+  </section>
+
+  <!-- Users -->
+  <section class="section alt">
+    <div class="wrap">
+      <span class="section-label">Users</span>
+      <h2>Who YourFootprint is built for.</h2>
+      <div class="users-row">
+        <img src="./assets/test3.jpg" alt="Agricultural business and landowners">
+        <img src="./assets/test4.jpg" alt="Agricultural business and landowners">
+        <img src="./assets/test5.jpg" alt="SMEs — small to medium business enterprises">
+      </div>
+    </div>
+  </section>
+
+  <!-- Consumers -->
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">The Consumer / End User</span>
+      <h2>Results you can trust.</h2>
+      <div class="body-copy">
+        <p style="text-align:center;">Tired of not knowing where to look? Skeptical about how and why something is or isn't CO2e neutral or compensated? Backed up by in-depth academic research, this puts accountability in your hands.</p>
+      </div>
+      <p class="lede" style="margin-bottom:4px;">What does <strong style="color:var(--orange); font-style:normal;">the public</strong> get using YourFootprint?</p>
+      <div class="get-list">
+        <div class="get-item"><img src="./assets/boxy.svg" alt=""><p>Solid information about CO2e-neutral products bought from companies using YourFootprint, plus fully transparent academic reporting on who, how and where the CO2e credits are collected and calculated.</p></div>
+      </div>
+      <p class="lede" style="margin-top:28px;"><span class="note" style="color:var(--orange); font-weight:700;">**This section is FREE to use for the Consumer/End User.</span></p>
+    </div>
+  </section>
+
+  <!-- Business Owners -->
+  <section class="section alt">
+    <div class="wrap">
+      <span class="section-label">Business Owners</span>
+      <h2>Pass the benefit of carbon reduction on to your customers.</h2>
+      <div class="body-copy">
+        <p style="text-align:center;">Are you a business leader looking for new and innovative ways to deal with your CO2? Are you interested in your climate impact as a small business, and would you like to pass on the benefit of carbon reduction to your customers? Then this section is for you.</p>
+      </div>
+      <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">business owners</strong> get using YourFootprint?</p>
+      <div class="get-list">
+        <div class="get-item"><img src="./assets/comp-whole.svg" alt=""><p>Sustainability branding.</p></div>
+        <div class="get-item"><img src="./assets/orangelogo.svg" alt=""><p>CO2e certification.</p></div>
+        <div class="get-item"><img src="./assets/shopwood.svg" alt=""><p>CO2e reduction via CO2e credit trading and compensating.</p></div>
+      </div>
+      <p class="lede" style="margin-top:28px;">After completing the questionnaire, you'll be redirected to the results page, with an overview of your results plus a step-by-step guide on how to compensate CO2e emissions and how to use the trading platform.</p>
+    </div>
+  </section>
+
+  <!-- Forest Owners -->
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">Forest Owners</span>
+      <h2>Turn land into a long-term asset.</h2>
+      <div class="body-copy">
+        <p style="text-align:center;">Are you a serious industrial farmer, or do you own a substantial area of forestry? Then this section is for you. Using our system, you can explore new opportunities and increase the value of large areas of your land.</p>
+      </div>
+      <p class="lede" style="margin-bottom:4px;">What does a <strong style="color:var(--orange); font-style:normal;">forest owner / industrial farmer</strong> get using YourFootprint?</p>
+      <div class="steps">
+        <div class="step"><span class="step-num">01</span><p>Sign up to our system.</p></div>
+        <div class="step"><span class="step-num">02</span><p>Answer the questionnaire.</p></div>
+        <div class="step"><span class="step-num">03</span><p>Get your overview, CO2e credits, and trade them in our system.</p></div>
+        <div class="step"><span class="step-num">04</span><p>Complete the questionnaire.</p></div>
+        <div class="step"><span class="step-num">05</span><p>Get a step-by-step guide on using the trading system.</p></div>
+        <div class="step highlight"><p>Start earning money.</p></div>
+        <div class="step"><span class="step-num">06</span><p>Sustainability accounting in line with international GHG regulations.</p></div>
+      </div>
+      <p class="lede" style="margin-top:36px; margin-bottom:0;">**YourFootprint gets a % each time you earn money from your forest or land via YourFootprint. The amount depends on the size of your forest or land saved in our system:</p>
+      <div class="royalty-table">
+        <div class="royalty-row"><span>0 – 100 Hectares</span><strong>5%</strong></div>
+        <div class="royalty-row"><span>100 – 200 Hectares</span><strong>4%</strong></div>
+        <div class="royalty-row"><span>200 – 300 Hectares</span><strong>3%</strong></div>
+        <div class="royalty-row"><span>300 – 500 Hectares</span><strong>2%</strong></div>
+        <div class="royalty-row"><span>500+ Hectares</span><strong>1%</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business (Scope 3) -->
+  <section class="section alt">
+    <div class="wrap">
+      <span class="section-label">Business</span>
+      <h2>A fully certified Scope&nbsp;3 life cycle analysis.</h2>
+      <div class="body-copy">
+        <p style="text-align:center;">Are you a small or medium-sized business, and a first mover in your sector? We can provide you with a fully certified Scope&nbsp;3 life cycle analysis for your business. Are you a national company under pressure from regulation and the financial sector to declare your CO2e activities, including upstream and downstream (Scope&nbsp;3)? Our solution provides peace of mind, moving forward.</p>
+      </div>
+      <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">company owners</strong> get using YourFootprint?</p>
+      <div class="get-list">
+        <div class="get-item"><p>Sustainability branding.</p></div>
+        <div class="get-item"><p>CO2e certification.</p></div>
+        <div class="get-item"><p>CO2e reduction via credit trading.</p></div>
+        <div class="get-item"><p>A tool to market their CO2e-neutral status.</p></div>
+        <div class="get-item"><p>Sustainability accounting for the future.</p></div>
+      </div>
+    </div>
+  </section>
 
   <!-- CTA band -->
   <section class="cta-band">
@@ -185,7 +313,7 @@
   <footer>
     <div class="wrap">
       <div>Your Footprint Ltd. &middot; <a href="mailto:admin@yourfootprint.uk">admin@yourfootprint.uk</a></div>
-      <div class="alt-note">This is a simplified redesign of the homepage — see the <a href="index.html">full page</a>.</div>
+      <div class="alt-note">This is a redesign of the homepage, laid out in a simpler single-page style — see the <a href="index.html">full page</a>.</div>
     </div>
   </footer>
 
