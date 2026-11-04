@@ -45,7 +45,7 @@
     background-image: linear-gradient(rgba(8,14,10,.62), rgba(8,14,10,.72)), url(./assets/bg.png);
     background-size:cover; background-position:center; background-attachment:fixed;
   }
-  .hero .logo{width:460px; max-width:84%; margin:0 auto 34px; filter:drop-shadow(0 6px 26px rgba(0,0,0,.45))}
+  .hero .logo{width:920px; max-width:84%; margin:0 auto 34px; filter:drop-shadow(0 6px 26px rgba(0,0,0,.45))}
   .eyebrow{display:block; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green-light); margin-bottom:14px}
   .hero h1{font-size:clamp(30px,4.6vw,48px); max-width:20ch; margin:0 auto 20px; color:#fff; text-shadow:0 2px 18px rgba(0,0,0,.4)}
   .hero p.lede{color:rgba(255,255,255,.88); font-size:1.18rem; max-width:58ch; margin:0 auto 36px}
@@ -62,7 +62,7 @@
   .region-grid{display:flex; gap:38px; justify-content:center; align-items:center; flex-wrap:wrap}
   .region-grid a{opacity:.8; transition:opacity .15s}
   .region-grid a:hover{opacity:1}
-  .region-grid img{height:64px; width:auto}
+  .region-grid img{height:128px; width:auto}
 
   /* About */
   .about{padding:68px 0; max-width:800px; margin:auto}
@@ -88,12 +88,9 @@
   .get-list{max-width:620px; margin:40px auto 0}
   .get-item{display:flex; gap:20px; align-items:flex-start; padding:22px 0; border-top:1px solid var(--line)}
   .get-item:first-child{border-top:none; padding-top:0}
-  .get-item img{width:76px; height:76px; flex-shrink:0; margin-top:2px}
+  .get-item img{width:152px; height:152px; flex-shrink:0; margin-top:2px}
   .get-item p{margin:0; color:var(--subhead); font-size:1.03rem; font-style:italic}
   .get-item .note{color:var(--orange); font-style:normal; font-weight:700}
-
-  .users-row{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:12px}
-  .users-row img{border-radius:16px; width:100%}
 
   .steps{max-width:680px; margin:40px auto 0}
   .step{display:flex; gap:22px; padding:18px 0; border-top:1px solid var(--line)}
@@ -111,7 +108,7 @@
 
   .proof{padding:0}
   .proof .wrap{display:flex; gap:48px; align-items:center; flex-wrap:wrap; padding:64px 24px}
-  .proof-logo{flex:0 0 440px; max-width:440px}
+  .proof-logo{flex:0 0 880px; max-width:880px}
   .proof-text{flex:1; min-width:280px}
   .proof-text .section-label{text-align:left}
   .proof-text h2{text-align:left; margin-bottom:12px}
@@ -142,12 +139,11 @@
 
   @media (max-width:760px){
     .pillars{grid-template-columns:1fr; gap:48px}
-    .users-row{grid-template-columns:1fr}
     .proof .wrap{flex-direction:column; text-align:center}
     .proof-text .section-label, .proof-text h2{text-align:center}
-    .proof-logo{flex-basis:auto; max-width:280px}
+    .proof-logo{flex-basis:auto; max-width:560px}
     .hero, .cta-band{background-attachment:scroll}
-    .hero .logo{width:280px}
+    .hero .logo{width:560px}
   }
 </style>
 </head>
@@ -216,19 +212,6 @@
         <div class="get-item"><img src="./assets/boxy.svg" alt=""><p>Sustainability accounting for the future. <span class="note">**This section requires a monthly subscription</span></p></div>
       </div>
       <p class="lede" style="margin-top:36px;">After taking the YF Questionnaire, you can start using the benefits of the tool.</p>
-    </div>
-  </section>
-
-  <!-- Users -->
-  <section class="section alt">
-    <div class="wrap">
-      <span class="section-label">Users</span>
-      <h2>Who YourFootprint is built for.</h2>
-      <div class="users-row">
-        <img src="./assets/test3.jpg" alt="Agricultural business and landowners">
-        <img src="./assets/test4.jpg" alt="Agricultural business and landowners">
-        <img src="./assets/test5.jpg" alt="SMEs — small to medium business enterprises">
-      </div>
     </div>
   </section>
 
