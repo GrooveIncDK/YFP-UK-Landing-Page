@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YourFootprint</title>
+<meta name="description" content="A CO2e measurement and trading platform for farmers, businesses and the people buying from them.">
+<link rel="stylesheet" href="https://use.typekit.net/afn4cft.css">
+<style>
+  :root{
+    --green:#5AA946;
+    --orange:#F17515;
+    --ink:#2b2b2b;
+    --muted:#6b6b6b;
+    --line:#e7e4df;
+    --paper:#faf9f6;
+    --max:1100px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; font-family:"myriad-pro", Arial, Helvetica, sans-serif; color:var(--ink); background:#fff; line-height:1.55}
+  img{max-width:100%; display:block}
+  a{color:inherit; text-decoration:none}
+  .wrap{max-width:var(--max); margin:auto; padding:0 24px}
+  h1,h2,h3{font-family:"myriad-pro-semi-condensed", Arial, Helvetica, sans-serif; font-weight:700; margin:0; letter-spacing:-.01em}
+
+  /* Hero */
+  .hero{padding:64px 0 48px; text-align:center}
+  .hero .logo{width:220px; margin:0 auto 28px}
+  .eyebrow{display:block; font-size:.78rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:14px}
+  .hero h1{font-size:clamp(28px,4.2vw,44px); max-width:18ch; margin:0 auto 18px; color:var(--ink)}
+  .hero p.lede{color:var(--muted); font-size:1.08rem; max-width:52ch; margin:0 auto 32px}
+  .cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
+  .btn{display:inline-block; padding:13px 26px; border-radius:8px; font-weight:700; font-size:.95rem}
+  .btn-primary{background:var(--orange); color:#fff}
+  .btn-primary:hover{background:#d9630d}
+  .btn-outline{border:1.5px solid var(--line); color:var(--ink)}
+  .btn-outline:hover{border-color:var(--orange); color:var(--orange)}
+
+  /* Region strip */
+  .region-strip{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:26px 0}
+  .region-strip .label{display:block; text-align:center; font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:16px}
+  .region-grid{display:flex; gap:28px; justify-content:center; align-items:center; flex-wrap:wrap}
+  .region-grid a{opacity:.75; transition:opacity .15s}
+  .region-grid a:hover{opacity:1}
+  .region-grid img{height:30px; width:auto}
+
+  /* Sections */
+  .section{padding:72px 0}
+  .section-label{display:block; text-align:center; font-size:.78rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--orange); margin-bottom:12px}
+  .section h2{text-align:center; font-size:clamp(24px,3vw,32px); margin-bottom:14px}
+  .section p.lede{text-align:center; color:var(--muted); max-width:56ch; margin:0 auto 48px}
+
+  .pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:36px}
+  .pillar{text-align:center; padding:0 12px}
+  .pillar img{height:70px; margin:0 auto 20px}
+  .pillar h3{font-size:1.1rem; margin-bottom:10px}
+  .pillar p{color:var(--muted); font-size:.96rem; margin:0}
+
+  .steps{max-width:640px; margin:auto}
+  .step{display:flex; gap:20px; padding:18px 0; border-top:1px solid var(--line)}
+  .step:first-child{border-top:none}
+  .step-num{font-family:"myriad-pro-semi-condensed",Arial,sans-serif; font-weight:700; font-size:1.3rem; color:var(--orange); width:34px; flex-shrink:0}
+  .step p{margin:0; color:var(--muted)}
+  .step strong{color:var(--ink)}
+
+  .proof{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .proof .wrap{display:flex; gap:40px; align-items:center; flex-wrap:wrap; padding:56px 24px}
+  .proof-logo{flex:0 0 220px; max-width:220px}
+  .proof-text{flex:1; min-width:260px}
+  .proof-text .section-label{text-align:left}
+  .proof-text h2{text-align:left; margin-bottom:10px}
+  .proof-text p{color:var(--muted); margin:0 0 18px}
+
+  .cta-band{text-align:center; padding:72px 0; background:var(--ink); color:#fff}
+  .cta-band h2{color:#fff; margin-bottom:12px}
+  .cta-band p{color:rgba(255,255,255,.75); margin:0 0 28px}
+  .cta-band .btn-outline{border-color:rgba(255,255,255,.35); color:#fff}
+  .cta-band .btn-outline:hover{border-color:var(--orange); color:var(--orange)}
+
+  footer{padding:36px 0; text-align:center; color:var(--muted); font-size:.85rem}
+  footer a{color:var(--orange)}
+  footer .alt-note{margin-top:8px; font-size:.8rem}
+
+  @media (max-width:760px){
+    .pillars{grid-template-columns:1fr; gap:48px}
+    .proof .wrap{flex-direction:column; text-align:center}
+    .proof-text .section-label, .proof-text h2{text-align:center}
+  }
+</style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <img class="logo" src="./assets/Full Logo YFP int.png" alt="YourFootprint">
+      <span class="eyebrow">Your Footprint</span>
+      <h1>Make sustainability pay for itself.</h1>
+      <p class="lede">A CO2e measurement and trading platform for farmers, businesses and the people buying from them — built on the Green House Gas Protocol.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://nextcloud.yourfootprint.uk/login" target="_blank">Log in</a>
+        <a class="btn btn-outline" href="https://yf-frontend.dev.yourfootprint.uk/" target="_blank">Try the demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Region strip -->
+  <div class="region-strip">
+    <span class="label">Choose your region</span>
+    <div class="region-grid">
+      <a href="https://uk-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP UK.png" alt="UK"></a>
+      <a href="https://dk-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP DK.png" alt="Denmark"></a>
+      <a href="https://im-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP IoM.png" alt="Isle of Man"></a>
+      <a href="https://ug-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP Uganda.png" alt="Uganda"></a>
+      <a href="https://zm-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP Zambia.png" alt="Zambia"></a>
+      <a href="https://pk-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP Pakistan.png" alt="Pakistan"></a>
+    </div>
+  </div>
+
+  <!-- What we do -->
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">What We Do</span>
+      <h2>One platform, three audiences.</h2>
+      <p class="lede">Measure CO2e, reduce it, and turn the result into something tradable, certifiable or simply worth knowing.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <img src="./assets/weight.svg" alt="">
+          <h3>Farmers &amp; landowners</h3>
+          <p>See your farm's CO2e status, cut emissions, and trade the carbon credits you generate on our marketplace.</p>
+        </div>
+        <div class="pillar">
+          <img src="./assets/trading.svg" alt="">
+          <h3>Businesses</h3>
+          <p>Calculate your Scope&nbsp;3 footprint, buy verified CO2e credits, and get certified carbon neutral.</p>
+        </div>
+        <div class="pillar">
+          <img src="./assets/boxy.svg" alt="">
+          <h3>Consumers</h3>
+          <p>Check the real, transparent story behind a product's CO2e-neutral claim — free, always.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <span class="section-label">How It Works</span>
+      <h2>Four steps to get started.</h2>
+      <div class="steps">
+        <div class="step"><span class="step-num">01</span><p><strong>Sign up</strong> and tell us a little about your farm, business or household.</p></div>
+        <div class="step"><span class="step-num">02</span><p><strong>Answer the questionnaire.</strong> It's how we build your CO2e picture.</p></div>
+        <div class="step"><span class="step-num">03</span><p><strong>Get your overview.</strong> See your CO2e status and any credits you've earned.</p></div>
+        <div class="step"><span class="step-num">04</span><p><strong>Trade, certify, or market</strong> your CO2e-neutral status — whichever applies to you.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof -->
+  <div class="proof">
+    <div class="wrap">
+      <a class="proof-logo" href="http://www.staalbaek.dk" target="_blank"><img src="./assets/staalbaeklogo.png" alt="Stålbæk Gård"></a>
+      <div class="proof-text">
+        <span class="section-label">Real-World Data</span>
+        <h2>Proven on our own farm.</h2>
+        <p>Before we ask anyone else to use this, we run it ourselves — our tool is built and tested on Stålbæk Gård, our own working farm in Denmark.</p>
+        <a class="btn btn-outline" href="http://www.staalbaek.dk" target="_blank">Visit Stålbæk Gård</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA band -->
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Ready to see your own CO2e picture?</h2>
+      <p>For more information, contact <a href="mailto:admin@yourfootprint.uk" style="color:var(--orange);">admin@yourfootprint.uk</a></p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://nextcloud.yourfootprint.uk/login" target="_blank">Log in</a>
+        <a class="btn btn-outline" href="https://yf-frontend.dev.yourfootprint.uk/" target="_blank">Try the demo</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div>Your Footprint Ltd. &middot; <a href="mailto:admin@yourfootprint.uk">admin@yourfootprint.uk</a></div>
+      <div class="alt-note">This is a simplified redesign of the homepage — see the <a href="index.html">full page</a>.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
