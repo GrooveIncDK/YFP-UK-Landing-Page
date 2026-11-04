@@ -37,12 +37,18 @@
   .wrap{max-width:var(--max); margin:auto; padding:0 24px}
   h1,h2,h3{font-family:"myriad-pro-semi-condensed", Arial, Helvetica, sans-serif; font-weight:700; margin:0; letter-spacing:-.01em}
 
-  /* Hero */
-  .hero{padding:68px 0 52px; text-align:center}
-  .hero .logo{width:340px; margin:0 auto 30px}
-  .eyebrow{display:block; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:14px}
-  .hero h1{font-size:clamp(28px,4.4vw,46px); max-width:20ch; margin:0 auto 20px; color:var(--ink)}
-  .hero p.lede{color:var(--muted); font-size:1.15rem; max-width:58ch; margin:0 auto 34px}
+  /* Hero — background from the main site (assets/bg.png), as the original
+     body{} used it: full-bleed, cover, fixed, with a dark scrim so the
+     logo/type stay legible over it. */
+  .hero{
+    position:relative; padding:96px 0 84px; text-align:center;
+    background-image: linear-gradient(rgba(8,14,10,.62), rgba(8,14,10,.72)), url(./assets/bg.png);
+    background-size:cover; background-position:center; background-attachment:fixed;
+  }
+  .hero .logo{width:460px; max-width:84%; margin:0 auto 34px; filter:drop-shadow(0 6px 26px rgba(0,0,0,.45))}
+  .eyebrow{display:block; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green-light); margin-bottom:14px}
+  .hero h1{font-size:clamp(30px,4.6vw,48px); max-width:20ch; margin:0 auto 20px; color:#fff; text-shadow:0 2px 18px rgba(0,0,0,.4)}
+  .hero p.lede{color:rgba(255,255,255,.88); font-size:1.18rem; max-width:58ch; margin:0 auto 36px}
   .cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
   .btn{display:inline-block; padding:14px 28px; border-radius:8px; font-weight:700; font-size:1rem}
   .btn-primary{background:var(--orange); color:#fff}
@@ -56,7 +62,7 @@
   .region-grid{display:flex; gap:38px; justify-content:center; align-items:center; flex-wrap:wrap}
   .region-grid a{opacity:.8; transition:opacity .15s}
   .region-grid a:hover{opacity:1}
-  .region-grid img{height:48px; width:auto}
+  .region-grid img{height:64px; width:auto}
 
   /* About */
   .about{padding:68px 0; max-width:800px; margin:auto}
@@ -82,7 +88,7 @@
   .get-list{max-width:620px; margin:40px auto 0}
   .get-item{display:flex; gap:20px; align-items:flex-start; padding:22px 0; border-top:1px solid var(--line)}
   .get-item:first-child{border-top:none; padding-top:0}
-  .get-item img{width:54px; height:54px; flex-shrink:0; margin-top:2px}
+  .get-item img{width:76px; height:76px; flex-shrink:0; margin-top:2px}
   .get-item p{margin:0; color:var(--subhead); font-size:1.03rem; font-style:italic}
   .get-item .note{color:var(--orange); font-style:normal; font-weight:700}
 
@@ -105,15 +111,22 @@
 
   .proof{padding:0}
   .proof .wrap{display:flex; gap:48px; align-items:center; flex-wrap:wrap; padding:64px 24px}
-  .proof-logo{flex:0 0 320px; max-width:320px}
+  .proof-logo{flex:0 0 440px; max-width:440px}
   .proof-text{flex:1; min-width:280px}
   .proof-text .section-label{text-align:left}
   .proof-text h2{text-align:left; margin-bottom:12px}
   .proof-text p{color:var(--muted); margin:0 0 20px; font-size:1.05rem}
 
-  .cta-band{text-align:center; padding:80px 0; background:var(--ink); color:#fff}
-  .cta-band h2{color:#fff; margin-bottom:14px}
-  .cta-band p{color:rgba(255,255,255,.75); margin:0 0 30px; font-size:1.08rem}
+  /* CTA band — background from YFPCloud's own configured login/background
+     image (staging.yfpcloud.yourfootprint.uk theming), since this band is
+     where the Log in / demo links sit. */
+  .cta-band{
+    text-align:center; padding:96px 0; color:#fff; position:relative;
+    background-image: linear-gradient(rgba(10,8,2,.58), rgba(10,8,2,.68)), url(./assets/yfpcloud-bg.jpg);
+    background-size:cover; background-position:center; background-attachment:fixed;
+  }
+  .cta-band h2{color:#fff; margin-bottom:14px; text-shadow:0 2px 18px rgba(0,0,0,.4)}
+  .cta-band p{color:rgba(255,255,255,.85); margin:0 0 30px; font-size:1.08rem}
   .cta-band .btn-outline{border-color:rgba(255,255,255,.35); color:#fff}
   .cta-band .btn-outline:hover{border-color:var(--orange); color:var(--orange)}
 
@@ -132,6 +145,9 @@
     .users-row{grid-template-columns:1fr}
     .proof .wrap{flex-direction:column; text-align:center}
     .proof-text .section-label, .proof-text h2{text-align:center}
+    .proof-logo{flex-basis:auto; max-width:280px}
+    .hero, .cta-band{background-attachment:scroll}
+    .hero .logo{width:280px}
   }
 </style>
 </head>
