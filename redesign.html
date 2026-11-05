@@ -49,6 +49,8 @@
   .eyebrow{display:block; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green-light); margin-bottom:14px}
   .hero h1{font-size:clamp(30px,4.6vw,48px); max-width:20ch; margin:0 auto 20px; color:#fff; text-shadow:0 2px 18px rgba(0,0,0,.4)}
   .hero p.lede{color:rgba(255,255,255,.88); font-size:1.18rem; max-width:58ch; margin:0 auto 36px}
+  .scroll-cue{display:inline-block; color:var(--green-light); font-weight:700; font-size:.95rem; letter-spacing:.03em; border-bottom:1px solid rgba(255,255,255,.4); padding-bottom:4px}
+  .scroll-cue:hover{color:#fff; border-color:#fff}
   .cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
   .btn{display:inline-block; padding:14px 28px; border-radius:8px; font-weight:700; font-size:1rem}
   .btn-primary{background:var(--orange); color:#fff}
@@ -56,9 +58,12 @@
   .btn-outline{border:1.5px solid var(--line); color:var(--ink)}
   .btn-outline:hover{border-color:var(--orange); color:var(--orange)}
 
-  /* Region strip */
+  /* Region strip — this IS the primary way users reach the platform: each
+     logo is a country-specific CO2e tool. The admin/system login lives
+     separately, further down, since it's a different audience. */
   .region-strip{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:30px 0}
-  .region-strip .label{display:block; text-align:center; font-size:.74rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:18px}
+  .region-strip .label{display:block; text-align:center; font-size:.74rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:10px}
+  .region-strip .region-intro{text-align:center; color:var(--muted); max-width:46ch; margin:0 auto 24px; font-size:.98rem}
   .region-grid{display:flex; gap:38px; justify-content:center; align-items:center; flex-wrap:wrap}
   .region-grid a{opacity:.8; transition:opacity .15s}
   .region-grid a:hover{opacity:1}
@@ -114,16 +119,21 @@
   .proof-text h2{text-align:left; margin-bottom:12px}
   .proof-text p{color:var(--muted); margin:0 0 20px; font-size:1.05rem}
 
-  /* CTA band — background from YFPCloud's own configured login/background
-     image (staging.yfpcloud.yourfootprint.uk theming), since this band is
-     where the Log in / demo links sit. */
+  /* CTA band — this is the YFPCloud environment's own background image
+     (staging.yfpcloud.yourfootprint.uk theming), shown near-undimmed since
+     it represents YFPCloud itself, not the YFP calculation tool above.
+     This section is specifically the system/admin login — a separate
+     audience from the regional tool users, so the photo carries full
+     brightness and only the text sits on a dark panel for contrast. */
   .cta-band{
     text-align:center; padding:96px 0; color:#fff; position:relative;
-    background-image: linear-gradient(rgba(10,8,2,.58), rgba(10,8,2,.68)), url(./assets/yfpcloud-bg.jpg);
+    background-image: url(./assets/yfpcloud-bg.jpg);
     background-size:cover; background-position:center; background-attachment:fixed;
   }
-  .cta-band h2{color:#fff; margin-bottom:14px; text-shadow:0 2px 18px rgba(0,0,0,.4)}
-  .cta-band p{color:rgba(255,255,255,.85); margin:0 0 30px; font-size:1.08rem}
+  .cta-band .panel{display:inline-block; max-width:620px; background:rgba(10,8,2,.46); border-radius:16px; padding:40px 48px}
+  .cta-band h2{color:#fff; margin-bottom:14px}
+  .cta-band p{color:rgba(255,255,255,.85); margin:0 0 30px; font-size:1.05rem}
+  .cta-band p a{color:var(--orange); text-decoration:underline}
   .cta-band .btn-outline{border-color:rgba(255,255,255,.35); color:#fff}
   .cta-band .btn-outline:hover{border-color:var(--orange); color:var(--orange)}
 
@@ -144,6 +154,7 @@
     .proof-logo{flex-basis:auto; max-width:280px}
     .hero, .cta-band{background-attachment:scroll}
     .hero .logo{width:560px}
+    .cta-band .panel{padding:28px 24px}
   }
 </style>
 </head>
@@ -156,16 +167,15 @@
       <span class="eyebrow">Your Footprint International</span>
       <h1>Make sustainability pay for itself.</h1>
       <p class="lede">A CO2e measurement and trading platform for farmers, businesses and the people buying from them — built on the Green House Gas Protocol.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="https://nextcloud.yourfootprint.uk/login" target="_blank">Log in</a>
-        <a class="btn btn-outline" href="https://yf-frontend.dev.yourfootprint.uk/" target="_blank">Try the demo</a>
-      </div>
+      <a class="scroll-cue" href="#regions">Choose your region to get started ↓</a>
     </div>
   </section>
 
-  <!-- Region strip -->
-  <div class="region-strip">
+  <!-- Region strip — the real entry point for users: each logo is a
+       country-specific CO2e tool, not a generic flag. -->
+  <div class="region-strip" id="regions">
     <span class="label">Choose your region</span>
+    <p class="region-intro">Select your country below to access the YourFootprint CO2e tool — this is how most people log in.</p>
     <div class="region-grid">
       <a href="https://uk-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP UK.png" alt="UK"></a>
       <a href="https://dk-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP DK.png" alt="Denmark"></a>
@@ -297,14 +307,16 @@
     </div>
   </section>
 
-  <!-- CTA band -->
+  <!-- CTA band — system/admin login for the YFPCloud environment, a
+       different audience from the regional tool users above. -->
   <section class="cta-band">
     <div class="wrap">
-      <h2>Ready to see your own CO2e picture?</h2>
-      <p>For more information, contact <a href="mailto:admin@yourfootprint.uk" style="color:var(--orange);">admin@yourfootprint.uk</a></p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="https://nextcloud.yourfootprint.uk/login" target="_blank">Log in</a>
-        <a class="btn btn-outline" href="https://yf-frontend.dev.yourfootprint.uk/" target="_blank">Try the demo</a>
+      <div class="panel">
+        <h2>YFPCloud — system &amp; admin access</h2>
+        <p>This is where Your Footprint staff and system administrators manage the platform — not the regional CO2e tool. Looking for that instead? <a href="#regions">Choose your region above</a>.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://nextcloud.yourfootprint.uk/login" target="_blank">Admin / YFPCloud log in</a>
+        </div>
       </div>
     </div>
   </section>
