@@ -94,6 +94,7 @@
   .get-item{display:flex; gap:20px; align-items:flex-start; padding:22px 0; border-top:1px solid var(--line)}
   .get-item:first-child{border-top:none; padding-top:0}
   .get-item img{width:152px; height:auto; flex-shrink:0; margin-top:2px}
+  .get-item img.icon-wide{width:230px}
   .get-item p{margin:0; color:var(--subhead); font-size:1.03rem; font-style:italic}
   .get-item .note{color:var(--orange); font-style:normal; font-weight:700}
 
@@ -155,6 +156,8 @@
     .hero, .cta-band{background-attachment:scroll}
     .hero .logo{width:560px}
     .cta-band .panel{padding:28px 24px}
+    .get-item{flex-direction:column; align-items:center; text-align:center; gap:10px}
+    .get-item img.icon-wide{width:180px}
   }
 </style>
 </head>
@@ -253,7 +256,7 @@
       <div class="get-list">
         <div class="get-item"><img src="./assets/comp-whole.svg" alt=""><p>Sustainability branding.</p></div>
         <div class="get-item"><img src="./assets/orangelogo.svg" alt=""><p>CO2e certification.</p></div>
-        <div class="get-item"><img src="./assets/shopwood.svg" alt="" style="width:230px; height:auto;"><p>CO2e reduction via CO2e credit trading and compensating.</p></div>
+        <div class="get-item"><img class="icon-wide" src="./assets/shopwood.svg" alt=""><p>CO2e reduction via CO2e credit trading and compensating.</p></div>
       </div>
       <p class="lede" style="margin-top:28px;">After completing the questionnaire, you'll be redirected to the results page, with an overview of your results plus a step-by-step guide on how to compensate CO2e emissions and how to use the trading platform.</p>
     </div>
