@@ -185,6 +185,33 @@
   .divider-leaf span:nth-child(2){background:var(--green-mid)}
   .divider-leaf span:nth-child(3){background:var(--green-light)}
 
+  /* Language switcher — same pill-button/panel pattern as the region
+     switcher already live on the regional CO2e tools (e.g. the top-right
+     control at ug-co2e.…/login), repurposed here to swap page text via
+     data-i18n instead of navigating to another domain. Fixed position so
+     it stays reachable while scrolling the long landing page; its own
+     opaque white panel + shadow keep it legible over both the dark hero
+     photo and the white sections below. */
+  .lang-switch{position:fixed; top:20px; right:20px; z-index:80; font-size:1rem}
+  .lang-switch-btn{display:flex; align-items:center; gap:7px; background:#fff; border:1px solid var(--line); border-radius:999px; padding:9px 16px; font-weight:700; font-size:.85rem; color:var(--ink); box-shadow:0 4px 18px rgba(0,0,0,.22); cursor:pointer; font-family:inherit}
+  .lang-switch-btn .flag{font-size:1.1rem; line-height:1}
+  .lang-switch-btn .chev{font-size:.6rem; color:var(--muted); transition:transform .15s; margin-left:1px}
+  .lang-switch.open .lang-switch-btn .chev{transform:rotate(180deg)}
+  .lang-panel{position:absolute; top:calc(100% + 10px); right:0; width:290px; max-width:calc(100vw - 24px); background:#fff; border-radius:14px; box-shadow:0 16px 44px rgba(0,0,0,.24); border:1px solid var(--line); padding:14px 0; display:none; max-height:72vh; overflow-y:auto}
+  .lang-switch.open .lang-panel{display:block}
+  .lang-panel-head{display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding:0 18px 10px; margin-bottom:6px; border-bottom:1px solid var(--line)}
+  .lang-panel-head .ttl{font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+  .lang-panel-head .count{font-size:.72rem; color:var(--muted); white-space:nowrap}
+  .lang-row{display:flex; align-items:center; gap:12px; width:100%; padding:9px 18px; background:none; border:0; text-align:left; cursor:pointer; font-family:inherit}
+  .lang-row:hover{background:var(--paper)}
+  .lang-row .flag{font-size:1.3rem; line-height:1; flex-shrink:0}
+  .lang-row .names{flex:1; min-width:0}
+  .lang-row .native{display:block; font-size:.95rem; font-weight:700; color:var(--ink)}
+  .lang-row .english{display:block; font-size:.76rem; color:var(--muted)}
+  .lang-row .active-badge{font-size:.66rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--green-dark); white-space:nowrap}
+  .lang-row.active{background:rgba(90,169,70,.08)}
+  .lang-row .caret{color:var(--muted); font-size:.95rem; flex-shrink:0}
+
   @media (max-width:760px){
     .pillars{grid-template-columns:1fr; gap:48px}
     .proof .wrap{flex-direction:column; text-align:center}
@@ -193,26 +220,46 @@
     .hero, .cta-band{background-attachment:scroll}
     .hero .logo{width:280px}
     .cta-band .panel{padding:28px 24px}
+    .lang-switch{top:14px; right:14px}
+    .lang-switch-btn{padding:7px 12px; font-size:.8rem}
   }
 </style>
 </head>
 <body>
 
+  <!-- Language switcher — reuses the look of the region-switcher already
+       live on the regional CO2e tools; wired below to swap data-i18n
+       text via translations.js instead of navigating anywhere. -->
+  <div class="lang-switch" id="langSwitch">
+    <button class="lang-switch-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false">
+      <span class="flag" id="langBtnFlag">🇬🇧</span>
+      <span id="langBtnCode">EN</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="lang-panel" id="langPanel" role="menu" aria-label="Choose language">
+      <div class="lang-panel-head">
+        <span class="ttl">YourFootprint in</span>
+        <span class="count" id="langCount"></span>
+      </div>
+      <div id="langList"></div>
+    </div>
+  </div>
+
   <!-- Hero -->
   <section class="hero">
     <div class="wrap">
       <img class="logo" src="./assets/Full Logo YFP int.png" alt="YourFootprint">
-      <h1>Make sustainability pay for itself.</h1>
-      <p class="lede">A CO2e measurement and trading platform for farmers, businesses and the people buying from them — built on the Green House Gas Protocol.</p>
-      <a class="scroll-cue" href="#regions">Choose your region to get started ↓</a>
+      <h1 data-i18n="hero.h1">Make sustainability pay for itself.</h1>
+      <p class="lede" data-i18n="hero.lede">A CO2e measurement and trading platform for farmers, businesses and the people buying from them — built on the Green House Gas Protocol.</p>
+      <a class="scroll-cue" href="#regions" data-i18n="hero.scrollCue">Choose your region to get started ↓</a>
     </div>
   </section>
 
   <!-- Region strip — the real entry point for users: each logo is a
        country-specific CO2e tool, not a generic flag. -->
   <div class="region-strip" id="regions">
-    <span class="label">Choose your region</span>
-    <p class="region-intro">Select your country below to access the YourFootprint CO2e tool — this is how most people log in.</p>
+    <span class="label" data-i18n="regions.label">Choose your region</span>
+    <p class="region-intro" data-i18n="regions.intro">Select your country below to access the YourFootprint CO2e tool — this is how most people log in.</p>
     <div class="region-grid">
       <a href="https://uk-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP UK.png" alt="UK"></a>
       <a href="https://dk-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP DK.png" alt="Denmark"></a>
@@ -231,11 +278,11 @@
   <!-- About -->
   <section class="about">
     <div class="wrap">
-      <p>Your Footprint Ltd. started as a single Danish farm trying to prove that sustainable agriculture could also be profitable. Five years on, that proof has grown into a platform now live across Scandinavia, Europe, Asia and Africa — built on the Green House Gas Protocol (GHGP) and exceeding government expectations on CO2e modelling.</p>
-      <p>The third sector has spent decades proving sustainable practice is the right thing to do. We've proven it's also feasible — closing the gap between people, planet and profit that triple bottom line economics has never been able to close on its own.</p>
-      <p>We're developing machine learning and neural-network modelling on a vector-space database, to make our CO2e measurement sharper and more predictive over time. All our data is academically validated by one of our internationally accredited university partners.</p>
-      <p>Farmers use our tool to measure, farm and trade CO2e as a resource, turning better land management into real income. Companies use the same platform to calculate their Scope&nbsp;3 footprint and buy verified CO2e credits to become certified carbon neutral.</p>
-      <p style="text-align:center; font-style:italic; margin-top:28px;">For more information, contact <a href="mailto:admin@yourfootprint.uk" style="color:var(--orange); font-weight:700;">admin@yourfootprint.uk</a></p>
+      <p data-i18n="about.p1">Your Footprint Ltd. started as a single Danish farm trying to prove that sustainable agriculture could also be profitable. Five years on, that proof has grown into a platform now live across Scandinavia, Europe, Asia and Africa — built on the Green House Gas Protocol (GHGP) and exceeding government expectations on CO2e modelling.</p>
+      <p data-i18n="about.p2">The third sector has spent decades proving sustainable practice is the right thing to do. We've proven it's also feasible — closing the gap between people, planet and profit that triple bottom line economics has never been able to close on its own.</p>
+      <p data-i18n="about.p3">We're developing machine learning and neural-network modelling on a vector-space database, to make our CO2e measurement sharper and more predictive over time. All our data is academically validated by one of our internationally accredited university partners.</p>
+      <p data-i18n="about.p4">Farmers use our tool to measure, farm and trade CO2e as a resource, turning better land management into real income. Companies use the same platform to calculate their Scope&nbsp;3 footprint and buy verified CO2e credits to become certified carbon neutral.</p>
+      <p style="text-align:center; font-style:italic; margin-top:28px;"><span data-i18n="about.contact">For more information, contact</span> <a href="mailto:admin@yourfootprint.uk" style="color:var(--orange); font-weight:700;">admin@yourfootprint.uk</a></p>
     </div>
   </section>
 
@@ -244,10 +291,10 @@
     <div class="wrap">
       <a class="proof-logo" href="http://www.staalbaek.dk" target="_blank"><img src="./assets/staalbaeklogo.png" alt="Stålbæk Gård"></a>
       <div class="proof-text">
-        <span class="section-label">Real-World Data</span>
-        <h2>Visit our farm for real-world data.</h2>
-        <p>Before we ask anyone else to use this, we run it ourselves — our tool is built and tested on Stålbæk Gård, our own working farm in Denmark.</p>
-        <a class="btn btn-outline" href="http://www.staalbaek.dk" target="_blank">Visit Stålbæk Gård</a>
+        <span class="section-label" data-i18n="proof.label">Real-World Data</span>
+        <h2 data-i18n="proof.h2">Visit our farm for real-world data.</h2>
+        <p data-i18n="proof.p">Before we ask anyone else to use this, we run it ourselves — our tool is built and tested on Stålbæk Gård, our own working farm in Denmark.</p>
+        <a class="btn btn-outline" href="http://www.staalbaek.dk" target="_blank" data-i18n="proof.btn">Visit Stålbæk Gård</a>
       </div>
     </div>
   </div>
@@ -256,57 +303,57 @@
   <section class="section">
     <div class="wrap">
       <div class="divider-leaf"><span></span><span></span><span></span></div>
-      <span class="section-label">Independent Farmers &amp; Agricultural Cooperatives</span>
-      <h2>A complete sustainability ecosystem for your farm.</h2>
+      <span class="section-label" data-i18n="farmers.label">Independent Farmers &amp; Agricultural Cooperatives</span>
+      <h2 data-i18n="farmers.h2">A complete sustainability ecosystem for your farm.</h2>
       <div class="body-copy">
-        <p style="text-align:center;">Looking for a way to reduce your CO2e footprint, cut production costs and open a new revenue line? This is built for working farms and cooperatives — not hobbyists.</p>
+        <p style="text-align:center;" data-i18n="farmers.intro">Looking for a way to reduce your CO2e footprint, cut production costs and open a new revenue line? This is built for working farms and cooperatives — not hobbyists.</p>
       </div>
-      <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">farmers and cooperatives</strong> get using YourFootprint?</p>
+      <p class="lede" style="margin-bottom:4px;"><span data-i18n="common.whatDo">What do</span> <strong style="color:var(--orange); font-style:normal;" data-i18n="farmers.ledeTerm">farmers and cooperatives</strong> <span data-i18n="common.getUsing">get using YourFootprint?</span></p>
       <div class="get-list">
-        <div class="get-item"><img src="./assets/weight.svg" alt=""><p>A full overview of your farm's CO2e status.</p></div>
-        <div class="get-item"><img src="./assets/exchange-leaf.svg" alt=""><p>Direct access to CBAM-compliant CO2e credit trading.</p></div>
-        <div class="get-item"><img src="./assets/shield-check.svg" alt=""><p>Full ownership and control of your own farm data, shared only on your terms.</p></div>
-        <div class="get-item"><img class="icon-md" src="./assets/boxy.svg" alt=""><p>Sustainability accounting built for the long term. <span class="note">**This section requires a monthly subscription</span></p></div>
+        <div class="get-item"><img src="./assets/weight.svg" alt=""><p data-i18n="farmers.item1">A full overview of your farm's CO2e status.</p></div>
+        <div class="get-item"><img src="./assets/exchange-leaf.svg" alt=""><p data-i18n="farmers.item2">Direct access to CBAM-compliant CO2e credit trading.</p></div>
+        <div class="get-item"><img src="./assets/shield-check.svg" alt=""><p data-i18n="farmers.item3">Full ownership and control of your own farm data, shared only on your terms.</p></div>
+        <div class="get-item"><img class="icon-md" src="./assets/boxy.svg" alt=""><p><span data-i18n="farmers.item4">Sustainability accounting built for the long term.</span> <span class="note" data-i18n="farmers.item4note">**This section requires a monthly subscription</span></p></div>
       </div>
-      <p class="lede" style="margin-top:36px;">After taking the YF Questionnaire, you can start using the benefits of the tool.</p>
+      <p class="lede" style="margin-top:36px;" data-i18n="farmers.closing">After taking the YF Questionnaire, you can start using the benefits of the tool.</p>
     </div>
   </section>
 
   <!-- Manufacturing & Upstream SMEs -->
   <section class="section alt">
     <div class="wrap">
-      <span class="section-label">Manufacturing &amp; Upstream SMEs</span>
-      <h2>Scope 1, 2 and 3 carbon audits — without the compliance headache.</h2>
+      <span class="section-label" data-i18n="sme.label">Manufacturing &amp; Upstream SMEs</span>
+      <h2 data-i18n="sme.h2">Scope 1, 2 and 3 carbon audits — without the compliance headache.</h2>
       <div class="body-copy">
-        <p style="text-align:center;">Net Zero legislation and CBAM taxation are closing in on manufacturers and upstream suppliers across the global supply chain. Upload your operational data and your bookkeeper or CFO can generate a fully certified Scope&nbsp;1, 2 or 3 carbon audit — then buy the CBAM-compliant CO2e credits you need directly through the platform.</p>
+        <p style="text-align:center;" data-i18n="sme.intro">Net Zero legislation and CBAM taxation are closing in on manufacturers and upstream suppliers across the global supply chain. Upload your operational data and your bookkeeper or CFO can generate a fully certified Scope&nbsp;1, 2 or 3 carbon audit — then buy the CBAM-compliant CO2e credits you need directly through the platform.</p>
       </div>
-      <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">manufacturers and upstream SMEs</strong> get using YourFootprint?</p>
+      <p class="lede" style="margin-bottom:4px;"><span data-i18n="common.whatDo">What do</span> <strong style="color:var(--orange); font-style:normal;" data-i18n="sme.ledeTerm">manufacturers and upstream SMEs</strong> <span data-i18n="common.getUsing">get using YourFootprint?</span></p>
       <div class="get-list">
-        <div class="get-item"><img src="./assets/company.svg" alt=""><p>Scope 1, 2 and 3 carbon audits, generated directly from your own operational data.</p></div>
-        <div class="get-item"><img src="./assets/credit-cart.svg" alt=""><p>CBAM-compliant CO2e credits, purchased directly through the platform.</p></div>
-        <div class="get-item"><img src="./assets/comp-whole.svg" alt=""><p>Sustainability branding.</p></div>
-        <div class="get-item"><img src="./assets/orangelogo.svg" alt=""><p>A certified CO2e-neutral status you can market.</p></div>
-        <div class="get-item"><img src="./assets/report-doc.svg" alt=""><p>Audit reports exported ready for regulators, customers or lenders.</p></div>
-        <div class="get-item"><img src="./assets/ledger.svg" alt=""><p>Sustainability accounting built for the long term.</p></div>
+        <div class="get-item"><img src="./assets/company.svg" alt=""><p data-i18n="sme.item1">Scope 1, 2 and 3 carbon audits, generated directly from your own operational data.</p></div>
+        <div class="get-item"><img src="./assets/credit-cart.svg" alt=""><p data-i18n="sme.item2">CBAM-compliant CO2e credits, purchased directly through the platform.</p></div>
+        <div class="get-item"><img src="./assets/comp-whole.svg" alt=""><p data-i18n="sme.item3">Sustainability branding.</p></div>
+        <div class="get-item"><img src="./assets/orangelogo.svg" alt=""><p data-i18n="sme.item4">A certified CO2e-neutral status you can market.</p></div>
+        <div class="get-item"><img src="./assets/report-doc.svg" alt=""><p data-i18n="sme.item5">Audit reports exported ready for regulators, customers or lenders.</p></div>
+        <div class="get-item"><img src="./assets/ledger.svg" alt=""><p data-i18n="sme.item6">Sustainability accounting built for the long term.</p></div>
       </div>
-      <p class="lede" style="margin-top:28px;">After completing the questionnaire, you'll be redirected to the results page, with an overview of your audit plus a step-by-step guide to compensating your CO2e emissions and using the trading platform.</p>
+      <p class="lede" style="margin-top:28px;" data-i18n="sme.closing">After completing the questionnaire, you'll be redirected to the results page, with an overview of your audit plus a step-by-step guide to compensating your CO2e emissions and using the trading platform.</p>
     </div>
   </section>
 
   <!-- National & Regional Forestry Authorities -->
   <section class="section">
     <div class="wrap">
-      <span class="section-label">National &amp; Regional Forestry Authorities</span>
-      <h2>Turn managed forest into a certified carbon asset — at scale.</h2>
+      <span class="section-label" data-i18n="forestry.label">National &amp; Regional Forestry Authorities</span>
+      <h2 data-i18n="forestry.h2">Turn managed forest into a certified carbon asset — at scale.</h2>
       <div class="body-copy">
-        <p style="text-align:center;">National and regional forestry bodies are sitting on a carbon asset most carbon markets can't currently price. Our platform gives forestry authorities a comprehensive Scope&nbsp;3 carbon evaluation and certification system, generating CBAM-compliant Certified CO2e Units ready for distribution into recognised domestic and international carbon markets.</p>
+        <p style="text-align:center;" data-i18n="forestry.intro">National and regional forestry bodies are sitting on a carbon asset most carbon markets can't currently price. Our platform gives forestry authorities a comprehensive Scope&nbsp;3 carbon evaluation and certification system, generating CBAM-compliant Certified CO2e Units ready for distribution into recognised domestic and international carbon markets.</p>
       </div>
-      <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">forestry authorities</strong> get using YourFootprint?</p>
+      <p class="lede" style="margin-bottom:4px;"><span data-i18n="common.whatDo">What do</span> <strong style="color:var(--orange); font-style:normal;" data-i18n="forestry.ledeTerm">forestry authorities</strong> <span data-i18n="common.getUsing">get using YourFootprint?</span></p>
       <div class="get-list">
-        <div class="get-item"><img src="./assets/forest.svg" alt=""><p>A comprehensive Scope 3 carbon evaluation across managed forest land.</p></div>
-        <div class="get-item"><img src="./assets/certificate.svg" alt=""><p>CBAM-compliant Certified CO2e Units, generated and managed directly through the platform.</p></div>
-        <div class="get-item"><img src="./assets/network-distribution.svg" alt=""><p>Distribution into recognised domestic and international carbon markets.</p></div>
-        <div class="get-item"><img src="./assets/ledger.svg" alt=""><p>Sustainability accounting built to international GHG standards.</p></div>
+        <div class="get-item"><img src="./assets/forest.svg" alt=""><p data-i18n="forestry.item1">A comprehensive Scope 3 carbon evaluation across managed forest land.</p></div>
+        <div class="get-item"><img src="./assets/certificate.svg" alt=""><p data-i18n="forestry.item2">CBAM-compliant Certified CO2e Units, generated and managed directly through the platform.</p></div>
+        <div class="get-item"><img src="./assets/network-distribution.svg" alt=""><p data-i18n="forestry.item3">Distribution into recognised domestic and international carbon markets.</p></div>
+        <div class="get-item"><img src="./assets/ledger.svg" alt=""><p data-i18n="forestry.item4">Sustainability accounting built to international GHG standards.</p></div>
       </div>
     </div>
   </section>
@@ -314,17 +361,17 @@
   <!-- National & International NGOs -->
   <section class="section alt">
     <div class="wrap">
-      <span class="section-label">National &amp; International NGOs</span>
-      <h2>Connect your programmes directly to the farming communities you serve.</h2>
+      <span class="section-label" data-i18n="ngos.label">National &amp; International NGOs</span>
+      <h2 data-i18n="ngos.h2">Connect your programmes directly to the farming communities you serve.</h2>
       <div class="body-copy">
-        <p style="text-align:center;">Running agricultural or sustainability programmes across a region takes more than good intentions — it takes a way to onboard, support and report on real communities at scale. YourFootprint gives NGOs a complete digital platform for exactly that.</p>
+        <p style="text-align:center;" data-i18n="ngos.intro">Running agricultural or sustainability programmes across a region takes more than good intentions — it takes a way to onboard, support and report on real communities at scale. YourFootprint gives NGOs a complete digital platform for exactly that.</p>
       </div>
-      <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">NGOs</strong> get using YourFootprint?</p>
+      <p class="lede" style="margin-bottom:4px;"><span data-i18n="common.whatDo">What do</span> <strong style="color:var(--orange); font-style:normal;" data-i18n="ngos.ledeTerm">NGOs</strong> <span data-i18n="common.getUsing">get using YourFootprint?</span></p>
       <div class="get-list">
-        <div class="get-item"><img src="./assets/community.svg" alt=""><p>Electronic onboarding for agricultural communities within your region.</p></div>
-        <div class="get-item"><img src="./assets/handshake.svg" alt=""><p>Stakeholder engagement and support tools built for programme delivery.</p></div>
-        <div class="get-item"><img src="./assets/capacity-growth.svg" alt=""><p>Capacity-building resources for the communities you work with.</p></div>
-        <div class="get-item"><img src="./assets/database.svg" alt=""><p>Customised data management, built to your programme's own reporting requirements.</p></div>
+        <div class="get-item"><img src="./assets/community.svg" alt=""><p data-i18n="ngos.item1">Electronic onboarding for agricultural communities within your region.</p></div>
+        <div class="get-item"><img src="./assets/handshake.svg" alt=""><p data-i18n="ngos.item2">Stakeholder engagement and support tools built for programme delivery.</p></div>
+        <div class="get-item"><img src="./assets/capacity-growth.svg" alt=""><p data-i18n="ngos.item3">Capacity-building resources for the communities you work with.</p></div>
+        <div class="get-item"><img src="./assets/database.svg" alt=""><p data-i18n="ngos.item4">Customised data management, built to your programme's own reporting requirements.</p></div>
       </div>
     </div>
   </section>
@@ -332,17 +379,17 @@
   <!-- National Governments -->
   <section class="section">
     <div class="wrap">
-      <span class="section-label">National Governments</span>
-      <h2>A single, secure platform for your Ministry of Agriculture's digital strategy.</h2>
+      <span class="section-label" data-i18n="gov.label">National Governments</span>
+      <h2 data-i18n="gov.h2">A single, secure platform for your Ministry of Agriculture's digital strategy.</h2>
       <div class="body-copy">
-        <p style="text-align:center;">From long-term agricultural data management to national agro-strategy deployment, YourFootprint gives governments one integrated platform to run sustainability monitoring and policy implementation on — built on data infrastructure that meets NIS-2, the EU's highest cybersecurity standard.</p>
+        <p style="text-align:center;" data-i18n="gov.intro">From long-term agricultural data management to national agro-strategy deployment, YourFootprint gives governments one integrated platform to run sustainability monitoring and policy implementation on — built on data infrastructure that meets NIS-2, the EU's highest cybersecurity standard.</p>
       </div>
-      <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">national governments</strong> get using YourFootprint?</p>
+      <p class="lede" style="margin-bottom:4px;"><span data-i18n="common.whatDo">What do</span> <strong style="color:var(--orange); font-style:normal;" data-i18n="gov.ledeTerm">national governments</strong> <span data-i18n="common.getUsing">get using YourFootprint?</span></p>
       <div class="get-list">
-        <div class="get-item"><img src="./assets/database.svg" alt=""><p>Long-term agricultural data management across the whole sector.</p></div>
-        <div class="get-item"><img src="./assets/policy-checklist.svg" alt=""><p>Sustainability monitoring and policy implementation tools.</p></div>
-        <div class="get-item"><img src="./assets/compass-strategy.svg" alt=""><p>National agro-strategy deployment, through a single integrated solution.</p></div>
-        <div class="get-item"><img src="./assets/shield-check.svg" alt=""><p>Data infrastructure built to NIS-2, the EU's highest cybersecurity standard.</p></div>
+        <div class="get-item"><img src="./assets/database.svg" alt=""><p data-i18n="gov.item1">Long-term agricultural data management across the whole sector.</p></div>
+        <div class="get-item"><img src="./assets/policy-checklist.svg" alt=""><p data-i18n="gov.item2">Sustainability monitoring and policy implementation tools.</p></div>
+        <div class="get-item"><img src="./assets/compass-strategy.svg" alt=""><p data-i18n="gov.item3">National agro-strategy deployment, through a single integrated solution.</p></div>
+        <div class="get-item"><img src="./assets/shield-check.svg" alt=""><p data-i18n="gov.item4">Data infrastructure built to NIS-2, the EU's highest cybersecurity standard.</p></div>
       </div>
     </div>
   </section>
@@ -352,10 +399,10 @@
   <section class="cta-band">
     <div class="wrap">
       <div class="panel">
-        <h2>YFPCloud — staff &amp; system administration</h2>
-        <p>This is where Your Footprint staff and system administrators manage the platform — not the regional CO2e tool. Looking for that instead? <a href="#regions">Choose your region above</a>.</p>
+        <h2 data-i18n="cta.h2">YFPCloud — staff &amp; system administration</h2>
+        <p><span data-i18n="cta.p">This is where Your Footprint staff and system administrators manage the platform — not the regional CO2e tool. Looking for that instead?</span> <a href="#regions" data-i18n="cta.linkText">Choose your region above</a>.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="https://yfpcloud.yourfootprint.uk/login" target="_blank">Admin / YFPCloud log in</a>
+          <a class="btn btn-primary" href="https://yfpcloud.yourfootprint.uk/login" target="_blank" data-i18n="cta.btn">Admin / YFPCloud log in</a>
         </div>
       </div>
     </div>
@@ -365,13 +412,99 @@
     <div class="wrap">
       <div>Your Footprint Ltd. &middot; <a href="mailto:admin@yourfootprint.uk">admin@yourfootprint.uk</a></div>
       <p class="powered-by">
-        Powered by
+        <span data-i18n="footer.poweredBy">Powered by</span>
         <a href="https://www.grooveinc.dk" rel="noopener" target="_blank">
           <img alt="Groove Inc" src="./assets/groove-logo.png">
         </a>
       </p>
     </div>
   </footer>
+
+  <script src="./assets/translations.js"></script>
+  <script>
+  (function(){
+    var LANGS = window.YFP_LANGS || [];
+    var DICT = window.YFP_I18N || {};
+    var DEFAULT_LANG = 'en';
+    var STORAGE_KEY = 'yfp-lang';
+
+    var switchEl = document.getElementById('langSwitch');
+    var btn = document.getElementById('langBtn');
+    var btnFlag = document.getElementById('langBtnFlag');
+    var btnCode = document.getElementById('langBtnCode');
+    var panel = document.getElementById('langPanel');
+    var list = document.getElementById('langList');
+    var countEl = document.getElementById('langCount');
+
+    if (countEl) countEl.textContent = LANGS.length + ' languages';
+
+    function renderList(activeCode){
+      list.innerHTML = '';
+      LANGS.forEach(function(lang){
+        var row = document.createElement('button');
+        row.type = 'button';
+        row.className = 'lang-row' + (lang.code === activeCode ? ' active' : '');
+        row.setAttribute('role', 'menuitemradio');
+        row.setAttribute('aria-checked', lang.code === activeCode ? 'true' : 'false');
+        row.innerHTML =
+          '<span class="flag">' + lang.flag + '</span>' +
+          '<span class="names"><span class="native">' + lang.native + '</span><span class="english">' + lang.english + '</span></span>' +
+          (lang.code === activeCode ? '<span class="active-badge">Active</span>' : '<span class="caret">→</span>');
+        row.addEventListener('click', function(){
+          setLanguage(lang.code);
+          closePanel();
+        });
+        list.appendChild(row);
+      });
+    }
+
+    function applyLanguage(code){
+      var dict = DICT[code] || DICT[DEFAULT_LANG] || {};
+      var fallback = DICT[DEFAULT_LANG] || {};
+      document.querySelectorAll('[data-i18n]').forEach(function(el){
+        var key = el.getAttribute('data-i18n');
+        var value = dict[key] !== undefined ? dict[key] : fallback[key];
+        if (value !== undefined) { el.textContent = value; }
+      });
+      var lang = null;
+      for (var i = 0; i < LANGS.length; i++) { if (LANGS[i].code === code) { lang = LANGS[i]; break; } }
+      if (!lang) lang = LANGS[0];
+      if (lang) {
+        btnFlag.textContent = lang.flag;
+        btnCode.textContent = lang.code.toUpperCase();
+      }
+      document.documentElement.lang = code;
+      document.documentElement.dir = (lang && lang.rtl) ? 'rtl' : 'ltr';
+      renderList(code);
+    }
+
+    function setLanguage(code){
+      try { localStorage.setItem(STORAGE_KEY, code); } catch (e) {}
+      applyLanguage(code);
+    }
+
+    function openPanel(){ switchEl.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+    function closePanel(){ switchEl.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      if (switchEl.classList.contains('open')) { closePanel(); } else { openPanel(); }
+    });
+    document.addEventListener('click', function(e){
+      if (!switchEl.contains(e.target)) { closePanel(); }
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') { closePanel(); }
+    });
+
+    var saved = DEFAULT_LANG;
+    try {
+      var stored = localStorage.getItem(STORAGE_KEY);
+      if (stored && DICT[stored]) { saved = stored; }
+    } catch (e) {}
+    applyLanguage(saved);
+  })();
+  </script>
 
 </body>
 </html>
