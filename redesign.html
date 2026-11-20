@@ -95,12 +95,23 @@
   .pillar h3{font-size:1.2rem; margin-bottom:12px; color:var(--subhead)}
   .pillar p{color:var(--muted); font-size:1rem; margin:0}
 
+  /* Mobile-first: a single stacked column of divided rows (icon on top,
+     text centered below) — this is the layout that already reads well on
+     narrow screens. The ≥761px override below turns it into a proper
+     multi-column card grid instead of stretching the same thin list across
+     a wide desktop viewport (the "not pleasing on desktop" issue, Nov 2026). */
   .get-list{max-width:620px; margin:40px auto 0}
-  .get-item{display:flex; gap:24px; align-items:center; padding:22px 0; border-top:1px solid var(--line)}
+  .get-item{display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px; padding:22px 0; border-top:1px solid var(--line)}
   .get-item:first-child{border-top:none; padding-top:0}
   .get-item img{width:104px; height:104px; object-fit:contain; flex-shrink:0}
   .get-item p{margin:0; color:var(--subhead); font-size:1.03rem; font-style:italic}
   .get-item .note{color:var(--orange); font-style:normal; font-weight:700}
+
+  @media (min-width:761px){
+    .get-list{max-width:1040px; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:28px}
+    .get-item{border-top:none; padding:32px 26px; border:1px solid var(--line); border-radius:14px; background:#fff; box-shadow:0 1px 4px rgba(0,0,0,.05)}
+    .get-item:first-child{padding-top:32px}
+  }
 
   .steps{max-width:680px; margin:40px auto 0}
   .step{display:flex; gap:22px; padding:18px 0; border-top:1px solid var(--line)}
@@ -163,7 +174,6 @@
     .hero, .cta-band{background-attachment:scroll}
     .hero .logo{width:280px}
     .cta-band .panel{padding:28px 24px}
-    .get-item{flex-direction:column; align-items:center; text-align:center; gap:10px}
   }
 </style>
 </head>
