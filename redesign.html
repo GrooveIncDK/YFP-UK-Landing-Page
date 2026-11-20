@@ -104,12 +104,13 @@
   .get-item{display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px; padding:22px 0; border-top:1px solid var(--line)}
   .get-item:first-child{border-top:none; padding-top:0}
   .get-item img{width:104px; height:104px; object-fit:contain; flex-shrink:0}
-  .get-item img.icon-lg{width:190px; height:190px}
+  .get-item img.icon-lg{width:107px; height:170px}
+  .get-item img.icon-md{width:170px; height:170px}
   .get-item p{margin:0; color:var(--subhead); font-size:1.03rem; font-style:italic}
   .get-item .note{color:var(--orange); font-style:normal; font-weight:700}
 
   @media (min-width:761px){
-    .get-list{max-width:1040px; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:28px; align-items:start}
+    .get-list{max-width:1040px; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:28px}
     .get-item{border-top:none; padding:32px 26px; border:1px solid var(--line); border-radius:14px; background:#fff; box-shadow:0 1px 4px rgba(0,0,0,.05)}
     .get-item:first-child{padding-top:32px}
   }
@@ -246,9 +247,9 @@
       <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">farmers and cooperatives</strong> get using YourFootprint?</p>
       <div class="get-list">
         <div class="get-item"><img src="./assets/weight.svg" alt=""><p>A full overview of your farm's CO2e status.</p></div>
-        <div class="get-item"><img class="icon-lg" src="./assets/shopfamilysvg.svg" alt=""><p>Direct access to CBAM-compliant CO2e credit trading.</p></div>
+        <div class="get-item"><img src="./assets/shopfamilysvg.svg" alt=""><p>Direct access to CBAM-compliant CO2e credit trading.</p></div>
         <div class="get-item"><img src="./assets/shield-check.svg" alt=""><p>Full ownership and control of your own farm data, shared only on your terms.</p></div>
-        <div class="get-item"><img class="icon-lg" src="./assets/boxy.svg" alt=""><p>Sustainability accounting built for the long term. <span class="note">**This section requires a monthly subscription</span></p></div>
+        <div class="get-item"><img class="icon-md" src="./assets/boxy.svg" alt=""><p>Sustainability accounting built for the long term. <span class="note">**This section requires a monthly subscription</span></p></div>
       </div>
       <p class="lede" style="margin-top:36px;">After taking the YF Questionnaire, you can start using the benefits of the tool.</p>
     </div>
@@ -265,7 +266,7 @@
       <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">manufacturers and upstream SMEs</strong> get using YourFootprint?</p>
       <div class="get-list">
         <div class="get-item"><img src="./assets/company.svg" alt=""><p>Scope 1, 2 and 3 carbon audits, generated directly from your own operational data.</p></div>
-        <div class="get-item"><img src="./assets/shopwood.svg" alt=""><p>CBAM-compliant CO2e credits, purchased directly through the platform.</p></div>
+        <div class="get-item"><img src="./assets/credit-cart.svg" alt=""><p>CBAM-compliant CO2e credits, purchased directly through the platform.</p></div>
         <div class="get-item"><img src="./assets/comp-whole.svg" alt=""><p>Sustainability branding.</p></div>
         <div class="get-item"><img src="./assets/orangelogo.svg" alt=""><p>A certified CO2e-neutral status you can market.</p></div>
         <div class="get-item"><img src="./assets/report-doc.svg" alt=""><p>Audit reports exported ready for regulators, customers or lenders.</p></div>
