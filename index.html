@@ -1,403 +1,360 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>YourFootprint</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link href="style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.typekit.net/afn4cft.css">
-    
-    <!-- MS clarity -->    
-    <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "eg6uj171ri");
-    </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YourFootprint</title>
+<meta name="description" content="A CO2e measurement and trading platform for farmers, businesses and the people buying from them.">
+<link rel="stylesheet" href="https://use.typekit.net/afn4cft.css">
+<style>
+  /*
+    Palette and type roles below are taken from the confirmed Omega
+    Document (Your-Footprint-Omega-Complete-Draft-v3.pdf, §02/§07/§08):
+    Brand Orange #f17515, Leaf Green Dark/Mid/Light #5aa946/#8fc747/#a8d053,
+    International Blue/Green #2294df/#a1e366, and the five My Footprint
+    status colours. Headline role = Myriad Pro Semibold SemiCondensed,
+    body role = Myriad Pro Regular (both via the site's existing Typekit
+    kit), matching what index.html already loads.
+  */
+  :root{
+    --orange:#f17515;
+    --green-dark:#5aa946;
+    --green-mid:#8fc747;
+    --green-light:#a8d053;
+    --intl-blue:#2294df;
+    --intl-green:#a1e366;
+    --ink:#2b2b2b;
+    --subhead:#424141;
+    --muted:#6b6b6b;
+    --line:#e7e4df;
+    --paper:#faf9f6;
+    --max:1140px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; font-family:"myriad-pro", Arial, Helvetica, sans-serif; color:var(--ink); background:#fff; line-height:1.6; font-size:17px}
+  img{max-width:100%; display:block}
+  a{color:inherit; text-decoration:none}
+  .wrap{max-width:var(--max); margin:auto; padding:0 24px}
+  h1,h2,h3{font-family:"myriad-pro-semi-condensed", Arial, Helvetica, sans-serif; font-weight:700; margin:0; letter-spacing:-.01em}
 
+  /* Hero — background: a restrained golden-hour Scandinavian farm scene,
+     replacing the earlier oversaturated HDR stock photo (Nov 2026 content
+     review). Full-bleed, cover, fixed, with a dark scrim so the logo/type
+     stay legible over it. */
+  .hero{
+    position:relative; padding:96px 0 84px; text-align:center;
+    background-image: linear-gradient(rgba(8,14,10,.62), rgba(8,14,10,.72)), url(./assets/hero-bg.jpg);
+    background-size:cover; background-position:center; background-attachment:fixed;
+  }
+  .hero .logo{width:460px; max-width:84%; margin:0 auto 34px; filter:drop-shadow(0 6px 26px rgba(0,0,0,.45))}
+  .eyebrow{display:block; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green-light); margin-bottom:14px}
+  .hero h1{font-size:clamp(30px,4.6vw,48px); max-width:20ch; margin:0 auto 20px; color:#fff; text-shadow:0 2px 18px rgba(0,0,0,.4)}
+  .hero p.lede{color:rgba(255,255,255,.88); font-size:1.18rem; max-width:58ch; margin:0 auto 36px}
+  .scroll-cue{display:inline-block; color:var(--green-light); font-weight:700; font-size:.95rem; letter-spacing:.03em; border-bottom:1px solid rgba(255,255,255,.4); padding-bottom:4px}
+  .scroll-cue:hover{color:#fff; border-color:#fff}
+  .cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
+  .btn{display:inline-block; padding:14px 28px; border-radius:8px; font-weight:700; font-size:1rem}
+  .btn-primary{background:var(--orange); color:#fff}
+  .btn-primary:hover{background:#d9630d}
+  .btn-outline{border:1.5px solid var(--line); color:var(--ink)}
+  .btn-outline:hover{border-color:var(--orange); color:var(--orange)}
+
+  /* Region strip — this IS the primary way users reach the platform: each
+     logo is a country-specific CO2e tool. The admin/system login lives
+     separately, further down, since it's a different audience. */
+  .region-strip{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:30px 0}
+  .region-strip .label{display:block; text-align:center; font-size:.74rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:10px}
+  .region-strip .region-intro{text-align:center; color:var(--muted); max-width:46ch; margin:0 auto 24px; font-size:.98rem}
+  .region-grid{display:flex; gap:38px; justify-content:center; align-items:center; flex-wrap:wrap}
+  .region-grid a{opacity:.8; transition:opacity .15s}
+  .region-grid a:hover{opacity:1}
+  .region-grid img{height:128px; width:auto}
+
+  /* About — padding now includes the horizontal gutter directly (previously
+     relied on a .wrap this section never had, so text ran edge-to-edge on
+     mobile; fixed Nov 2026). .wrap's own 0 24px gutter is reused, narrowed
+     to 800px for this section's shorter measure. */
+  .about{padding:68px 0}
+  .about .wrap{max-width:800px}
+  .about p{color:var(--subhead); font-size:1.08rem; margin:0 0 18px}
+  .about p:last-child{margin-bottom:0}
+
+  /* Sections */
+  .section{padding:76px 0}
+  .section.alt{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .section-label{display:block; text-align:center; font-size:clamp(30px,3.8vw,42px); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--orange); margin-bottom:14px}
+  .section h2{text-align:center; font-size:clamp(26px,3.2vw,36px); margin-bottom:16px; color:var(--subhead)}
+  .section p.lede{text-align:center; color:var(--muted); max-width:62ch; margin:0 auto 20px; font-size:1.08rem}
+  .section .body-copy{max-width:700px; margin:0 auto 44px}
+  .section .body-copy p{color:var(--subhead); font-size:1.05rem; margin:0 0 16px}
+  .section .body-copy p:last-child{margin-bottom:0}
+
+  .pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:44px; margin-top:12px}
+  .pillar{text-align:center; padding:0 14px}
+  .pillar img{height:110px; margin:0 auto 24px}
+  .pillar h3{font-size:1.2rem; margin-bottom:12px; color:var(--subhead)}
+  .pillar p{color:var(--muted); font-size:1rem; margin:0}
+
+  /* Mobile-first: a single stacked column of divided rows (icon on top,
+     text centered below) — this is the layout that already reads well on
+     narrow screens. The ≥761px override below turns it into a proper
+     multi-column card grid instead of stretching the same thin list across
+     a wide desktop viewport (the "not pleasing on desktop" issue, Nov 2026). */
+  .get-list{max-width:620px; margin:40px auto 0}
+  .get-item{display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px; padding:22px 0; border-top:1px solid var(--line)}
+  .get-item:first-child{border-top:none; padding-top:0}
+  .get-item img{width:104px; height:104px; object-fit:contain; flex-shrink:0}
+  .get-item img.icon-lg{width:107px; height:170px}
+  .get-item img.icon-md{width:170px; height:170px}
+  .get-item p{margin:0; color:var(--subhead); font-size:1.03rem; font-style:italic}
+  .get-item .note{color:var(--orange); font-style:normal; font-weight:700}
+
+  @media (min-width:761px){
+    .get-list{max-width:1040px; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:28px}
+    .get-item{border-top:none; padding:32px 26px; border:1px solid var(--line); border-radius:14px; background:#fff; box-shadow:0 1px 4px rgba(0,0,0,.05)}
+    .get-item:first-child{padding-top:32px}
+  }
+
+  .steps{max-width:680px; margin:40px auto 0}
+  .step{display:flex; gap:22px; padding:18px 0; border-top:1px solid var(--line)}
+  .step:first-child{border-top:none}
+  .step-num{font-family:"myriad-pro-semi-condensed",Arial,sans-serif; font-weight:700; font-size:1.4rem; color:var(--orange); width:36px; flex-shrink:0}
+  .step p{margin:0; color:var(--subhead); font-size:1.03rem}
+  .step strong{color:var(--ink)}
+  .step.highlight{background:var(--orange); color:#fff; border-radius:10px; padding:20px 24px; border-top:none; margin:8px 0}
+  .step.highlight p{color:#fff; font-weight:700; font-size:1.1rem}
+
+  .royalty-table{max-width:460px; margin:34px auto 0; border:1px solid var(--line); border-radius:12px; overflow:hidden}
+  .royalty-row{display:flex; justify-content:space-between; padding:13px 22px; font-size:.98rem; color:var(--subhead); border-top:1px solid var(--line)}
+  .royalty-row:first-child{border-top:none}
+  .royalty-row strong{color:var(--ink)}
+
+  .proof{padding:0}
+  .proof .wrap{display:flex; gap:48px; align-items:center; flex-wrap:wrap; padding:64px 24px}
+  .proof-logo{flex:0 0 440px; max-width:440px}
+  .proof-text{flex:1; min-width:280px}
+  .proof-text .section-label{text-align:left}
+  .proof-text h2{text-align:left; margin-bottom:12px}
+  .proof-text p{color:var(--muted); margin:0 0 20px; font-size:1.05rem}
+
+  /* CTA band — this is the YFPCloud environment's own background image
+     (staging.yfpcloud.yourfootprint.uk theming), shown near-undimmed since
+     it represents YFPCloud itself, not the YFP calculation tool above.
+     This section is specifically staff/admin sign-in — a separate
+     audience from the regional tool users, so the photo carries full
+     brightness and only the text sits on a dark panel for contrast. */
+  .cta-band{
+    text-align:center; padding:96px 0; color:#fff; position:relative;
+    background-image: url(./assets/yfpcloud-bg.jpg);
+    background-size:cover; background-position:center; background-attachment:fixed;
+  }
+  .cta-band .panel{display:inline-block; max-width:620px; background:rgba(10,8,2,.46); border-radius:16px; padding:40px 48px}
+  .cta-band h2{color:#fff; margin-bottom:14px}
+  .cta-band p{color:rgba(255,255,255,.85); margin:0 0 30px; font-size:1.05rem}
+  .cta-band p a{color:var(--orange); text-decoration:underline}
+  .cta-band .btn-outline{border-color:rgba(255,255,255,.35); color:#fff}
+  .cta-band .btn-outline:hover{border-color:var(--orange); color:var(--orange)}
+
+  footer{padding:40px 0; text-align:center; color:var(--muted); font-size:.9rem}
+  footer a{color:var(--orange)}
+  footer .powered-by{margin-top:24px; padding-top:16px; border-top:1px solid var(--line); display:flex; align-items:center; justify-content:center; gap:10px; font-size:.82rem; color:var(--muted)}
+  footer .powered-by a{display:inline-flex; align-items:center; gap:8px; color:var(--muted); text-decoration:none}
+  footer .powered-by a span{text-decoration:underline}
+  footer .powered-by img{height:20px; width:auto; background:#fff; border-radius:3px; padding:2px 4px}
+
+  .divider-leaf{display:flex; justify-content:center; gap:8px; margin:0 0 36px}
+  .divider-leaf span{width:8px; height:8px; border-radius:50%}
+  .divider-leaf span:nth-child(1){background:var(--green-dark)}
+  .divider-leaf span:nth-child(2){background:var(--green-mid)}
+  .divider-leaf span:nth-child(3){background:var(--green-light)}
+
+  @media (max-width:760px){
+    .pillars{grid-template-columns:1fr; gap:48px}
+    .proof .wrap{flex-direction:column; text-align:center}
+    .proof-text .section-label, .proof-text h2{text-align:center}
+    .proof-logo{flex-basis:auto; max-width:280px}
+    .hero, .cta-band{background-attachment:scroll}
+    .hero .logo{width:280px}
+    .cta-band .panel{padding:28px 24px}
+  }
+</style>
 </head>
-
 <body>
 
-    <!-- Main container -->
-    <div class="container">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <img class="logo" src="./assets/Full Logo YFP int.png" alt="YourFootprint">
+      <h1>Make sustainability pay for itself.</h1>
+      <p class="lede">A CO2e measurement and trading platform for farmers, businesses and the people buying from them — built on the Green House Gas Protocol.</p>
+      <a class="scroll-cue" href="#regions">Choose your region to get started ↓</a>
+    </div>
+  </section>
 
-        <!-- Top Image - Orange Logo -->
-        <div class="row d-flex">
+  <!-- Region strip — the real entry point for users: each logo is a
+       country-specific CO2e tool, not a generic flag. -->
+  <div class="region-strip" id="regions">
+    <span class="label">Choose your region</span>
+    <p class="region-intro">Select your country below to access the YourFootprint CO2e tool — this is how most people log in.</p>
+    <div class="region-grid">
+      <a href="https://uk-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP UK.png" alt="UK"></a>
+      <a href="https://dk-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP DK.png" alt="Denmark"></a>
+      <a href="https://im-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP IoM.png" alt="Isle of Man"></a>
+      <a href="https://ug-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP Uganda.png" alt="Uganda"></a>
+      <a href="https://zm-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP Zambia.png" alt="Zambia"></a>
+      <a href="https://pk-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP Pakistan.png" alt="Pakistan"></a>
+      <a href="https://se-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP Sweden.png" alt="Sweden"></a>
+      <a href="https://ke-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP Kenya.png" alt="Kenya"></a>
+      <a href="https://nl-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP Netherlands.png" alt="Netherlands"></a>
+      <a href="https://in-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP India.png" alt="India"></a>
+      <a href="https://ng-co2e.dev.yourfootprint.uk" target="_blank"><img src="./assets/YFP Nigeria.png" alt="Nigeria"></a>
+    </div>
+  </div>
 
-            <div class="col">
-                <img src="./assets/globe.svg"></img>
-            </div>
+  <!-- About -->
+  <section class="about">
+    <div class="wrap">
+      <p>Your Footprint Ltd. started as a single Danish farm trying to prove that sustainable agriculture could also be profitable. Five years on, that proof has grown into a platform now live across Scandinavia, Europe, Asia and Africa — built on the Green House Gas Protocol (GHGP) and exceeding government expectations on CO2e modelling.</p>
+      <p>The third sector has spent decades proving sustainable practice is the right thing to do. We've proven it's also feasible — closing the gap between people, planet and profit that triple bottom line economics has never been able to close on its own.</p>
+      <p>We're developing machine learning and neural-network modelling on a vector-space database, to make our CO2e measurement sharper and more predictive over time. All our data is academically validated by one of our internationally accredited university partners.</p>
+      <p>Farmers use our tool to measure, farm and trade CO2e as a resource, turning better land management into real income. Companies use the same platform to calculate their Scope&nbsp;3 footprint and buy verified CO2e credits to become certified carbon neutral.</p>
+      <p style="text-align:center; font-style:italic; margin-top:28px;">For more information, contact <a href="mailto:admin@yourfootprint.uk" style="color:var(--orange); font-weight:700;">admin@yourfootprint.uk</a></p>
+    </div>
+  </section>
 
+  <!-- Proof -->
+  <div class="section alt proof">
+    <div class="wrap">
+      <a class="proof-logo" href="http://www.staalbaek.dk" target="_blank"><img src="./assets/staalbaeklogo.png" alt="Stålbæk Gård"></a>
+      <div class="proof-text">
+        <span class="section-label">Real-World Data</span>
+        <h2>Visit our farm for real-world data.</h2>
+        <p>Before we ask anyone else to use this, we run it ourselves — our tool is built and tested on Stålbæk Gård, our own working farm in Denmark.</p>
+        <a class="btn btn-outline" href="http://www.staalbaek.dk" target="_blank">Visit Stålbæk Gård</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Independent Farmers & Agricultural Cooperatives -->
+  <section class="section">
+    <div class="wrap">
+      <div class="divider-leaf"><span></span><span></span><span></span></div>
+      <span class="section-label">Independent Farmers &amp; Agricultural Cooperatives</span>
+      <h2>A complete sustainability ecosystem for your farm.</h2>
+      <div class="body-copy">
+        <p style="text-align:center;">Looking for a way to reduce your CO2e footprint, cut production costs and open a new revenue line? This is built for working farms and cooperatives — not hobbyists.</p>
+      </div>
+      <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">farmers and cooperatives</strong> get using YourFootprint?</p>
+      <div class="get-list">
+        <div class="get-item"><img src="./assets/weight.svg" alt=""><p>A full overview of your farm's CO2e status.</p></div>
+        <div class="get-item"><img src="./assets/exchange-leaf.svg" alt=""><p>Direct access to CBAM-compliant CO2e credit trading.</p></div>
+        <div class="get-item"><img src="./assets/shield-check.svg" alt=""><p>Full ownership and control of your own farm data, shared only on your terms.</p></div>
+        <div class="get-item"><img class="icon-md" src="./assets/boxy.svg" alt=""><p>Sustainability accounting built for the long term. <span class="note">**This section requires a monthly subscription</span></p></div>
+      </div>
+      <p class="lede" style="margin-top:36px;">After taking the YF Questionnaire, you can start using the benefits of the tool.</p>
+    </div>
+  </section>
+
+  <!-- Manufacturing & Upstream SMEs -->
+  <section class="section alt">
+    <div class="wrap">
+      <span class="section-label">Manufacturing &amp; Upstream SMEs</span>
+      <h2>Scope 1, 2 and 3 carbon audits — without the compliance headache.</h2>
+      <div class="body-copy">
+        <p style="text-align:center;">Net Zero legislation and CBAM taxation are closing in on manufacturers and upstream suppliers across the global supply chain. Upload your operational data and your bookkeeper or CFO can generate a fully certified Scope&nbsp;1, 2 or 3 carbon audit — then buy the CBAM-compliant CO2e credits you need directly through the platform.</p>
+      </div>
+      <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">manufacturers and upstream SMEs</strong> get using YourFootprint?</p>
+      <div class="get-list">
+        <div class="get-item"><img src="./assets/company.svg" alt=""><p>Scope 1, 2 and 3 carbon audits, generated directly from your own operational data.</p></div>
+        <div class="get-item"><img src="./assets/credit-cart.svg" alt=""><p>CBAM-compliant CO2e credits, purchased directly through the platform.</p></div>
+        <div class="get-item"><img src="./assets/comp-whole.svg" alt=""><p>Sustainability branding.</p></div>
+        <div class="get-item"><img src="./assets/orangelogo.svg" alt=""><p>A certified CO2e-neutral status you can market.</p></div>
+        <div class="get-item"><img src="./assets/report-doc.svg" alt=""><p>Audit reports exported ready for regulators, customers or lenders.</p></div>
+        <div class="get-item"><img src="./assets/ledger.svg" alt=""><p>Sustainability accounting built for the long term.</p></div>
+      </div>
+      <p class="lede" style="margin-top:28px;">After completing the questionnaire, you'll be redirected to the results page, with an overview of your audit plus a step-by-step guide to compensating your CO2e emissions and using the trading platform.</p>
+    </div>
+  </section>
+
+  <!-- National & Regional Forestry Authorities -->
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">National &amp; Regional Forestry Authorities</span>
+      <h2>Turn managed forest into a certified carbon asset — at scale.</h2>
+      <div class="body-copy">
+        <p style="text-align:center;">National and regional forestry bodies are sitting on a carbon asset most carbon markets can't currently price. Our platform gives forestry authorities a comprehensive Scope&nbsp;3 carbon evaluation and certification system, generating CBAM-compliant Certified CO2e Units ready for distribution into recognised domestic and international carbon markets.</p>
+      </div>
+      <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">forestry authorities</strong> get using YourFootprint?</p>
+      <div class="get-list">
+        <div class="get-item"><img src="./assets/forest.svg" alt=""><p>A comprehensive Scope 3 carbon evaluation across managed forest land.</p></div>
+        <div class="get-item"><img src="./assets/certificate.svg" alt=""><p>CBAM-compliant Certified CO2e Units, generated and managed directly through the platform.</p></div>
+        <div class="get-item"><img src="./assets/network-distribution.svg" alt=""><p>Distribution into recognised domestic and international carbon markets.</p></div>
+        <div class="get-item"><img src="./assets/ledger.svg" alt=""><p>Sustainability accounting built to international GHG standards.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- National & International NGOs -->
+  <section class="section alt">
+    <div class="wrap">
+      <span class="section-label">National &amp; International NGOs</span>
+      <h2>Connect your programmes directly to the farming communities you serve.</h2>
+      <div class="body-copy">
+        <p style="text-align:center;">Running agricultural or sustainability programmes across a region takes more than good intentions — it takes a way to onboard, support and report on real communities at scale. YourFootprint gives NGOs a complete digital platform for exactly that.</p>
+      </div>
+      <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">NGOs</strong> get using YourFootprint?</p>
+      <div class="get-list">
+        <div class="get-item"><img src="./assets/community.svg" alt=""><p>Electronic onboarding for agricultural communities within your region.</p></div>
+        <div class="get-item"><img src="./assets/handshake.svg" alt=""><p>Stakeholder engagement and support tools built for programme delivery.</p></div>
+        <div class="get-item"><img src="./assets/capacity-growth.svg" alt=""><p>Capacity-building resources for the communities you work with.</p></div>
+        <div class="get-item"><img src="./assets/database.svg" alt=""><p>Customised data management, built to your programme's own reporting requirements.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- National Governments -->
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">National Governments</span>
+      <h2>A single, secure platform for your Ministry of Agriculture's digital strategy.</h2>
+      <div class="body-copy">
+        <p style="text-align:center;">From long-term agricultural data management to national agro-strategy deployment, YourFootprint gives governments one integrated platform to run sustainability monitoring and policy implementation on — built on data infrastructure that meets NIS-2, the EU's highest cybersecurity standard.</p>
+      </div>
+      <p class="lede" style="margin-bottom:4px;">What do <strong style="color:var(--orange); font-style:normal;">national governments</strong> get using YourFootprint?</p>
+      <div class="get-list">
+        <div class="get-item"><img src="./assets/database.svg" alt=""><p>Long-term agricultural data management across the whole sector.</p></div>
+        <div class="get-item"><img src="./assets/policy-checklist.svg" alt=""><p>Sustainability monitoring and policy implementation tools.</p></div>
+        <div class="get-item"><img src="./assets/compass-strategy.svg" alt=""><p>National agro-strategy deployment, through a single integrated solution.</p></div>
+        <div class="get-item"><img src="./assets/shield-check.svg" alt=""><p>Data infrastructure built to NIS-2, the EU's highest cybersecurity standard.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA band — staff/admin login for the YFPCloud environment, a
+       different audience from the regional tool users above. -->
+  <section class="cta-band">
+    <div class="wrap">
+      <div class="panel">
+        <h2>YFPCloud — staff &amp; system administration</h2>
+        <p>This is where Your Footprint staff and system administrators manage the platform — not the regional CO2e tool. Looking for that instead? <a href="#regions">Choose your region above</a>.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://yfpcloud.yourfootprint.uk/login" target="_blank">Admin / YFPCloud log in</a>
         </div>
-
-        <!-- Row with parent grey box -->
-        <div class="custom-grey row d-flex justify-content-center mt-5">
-
-            <div class="custom-bg p-4 col-xxl-10 col-xl-10 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h1 class="d-flex justify-content-center" style="color: #5AA946;">Welcome to</h1>
-                <div class="col mt-3 d-flex justify-content-center">
-                    <img src="./assets/Full Logo YFP int.png" style="width: 400px; height: auto;">
-                </div>
-<div class="row">
-    <div class="col mt-3 d-flex justify-content-center">
-        <a href="https://dk-co2e.dev.yourfootprint.uk">
-        <img src="./assets/YFP DK.png" style="width: 130px; height: auto;">
-        </a>
+      </div>
     </div>
-    <div class="col mt-3 d-flex justify-content-center">
-        <a href="https://uk-co2e.dev.yourfootprint.uk">
-        <img src="./assets/YFP UK.png" style="width: 130px; height: auto;">
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div>Your Footprint Ltd. &middot; <a href="mailto:admin@yourfootprint.uk">admin@yourfootprint.uk</a></div>
+      <p class="powered-by">
+        Powered by
+        <a href="https://www.grooveinc.dk" rel="noopener" target="_blank">
+          <img alt="Groove Inc" src="./assets/groove-logo.png">
         </a>
+      </p>
     </div>
-    <div class="col mt-3 d-flex justify-content-center">
-        <a href="https://im-co2e.dev.yourfootprint.uk">
-        <img src="./assets/YFP IoM.png" style="width: 130px; height: auto;">
-        </a>
-    </div>
-    <div class="col mt-3 d-flex justify-content-center">
-        <a href="https://ug-co2e.dev.yourfootprint.uk">
-        <img src="./assets/YFP Uganda.png" style="width: 130px; height: auto;">
-        </a>
-    </div>
-    <div class="col mt-3 d-flex justify-content-center">
-        <a href="https://zm-co2e.dev.yourfootprint.uk">
-        <img src="./assets/YFP Zambia.png" style="width: 130px; height: auto;">
-        </a>
-    </div>
-    <div class="col mt-3 d-flex justify-content-center">
-        <a href="https://pk-co2e.dev.yourfootprint.uk">
-        <img src="./assets/YFP Pakistan.png" style="width: 130px; height: auto;">
-        </a>
-    </div>
-   
-</div>
+  </footer>
 
-				<div class="col-12 text-center mt-4 mb-3">
-					<div style="font-size: 27px; font-style: italic; color: #F17515;">
-						Your Footprint International - 
-						<a href="https://nextcloud.yourfootprint.uk/login" target="_blank" style="color:#0d6efd; font-weight:bold;">Login Here</a>
-					</div>
-
-					<div class="mt-2" style="font-size: 22px; font-style: italic;">
-						<a href="https://yf-frontend.dev.yourfootprint.uk/" target="_blank" style="color:#0d6efd; font-weight:bold;">Test our demo here</a>
-					</div>
-				</div>
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-3">
-                        <img style="width: 75%; display: block; margin-left: auto; margin-right: auto;"
-                            src="./assets/test.jpg"></img>
-                    </div>
-                <div class="col just-text mt-3 custom-padding">
-                    Your Footprint Ltd. is an innovative company that strives to make farming more sustainable, while maintaining profitability.
-                    We have created a Carbon (CO2e) Farming tool,
-                    compliant with the Green House Gas Protocol (GHGP) and exceeding government expectations on CO2 Modeling. 
-                    <br><br>
-                    In addition to our farming tool,
-                    we have a built-in CO2e marketplace for the trade of carbon credits farmed by the farmer on their own land. Our goal is to make it profitable for
-                    agriculture and landowners, to plant more forest and begin farming Carbon as a resource.
-                    Company's can also use our tool to calculate their SCOPE3 CO2e footprint,
-                    and then utilize our trading platform to acquire CO2e credits from us and become certified CO2e
-                    neutral.
-                    </br>
-                    
-                     <div class="col d-flex justify-content-center mt-3 fst-italic myriad-lighter">
-                   <span style="color: #F17515"> For more information contact :- <a href="mailto:admin@yourfootprint.uk"> admin@yourfootprint.uk</a></span> <br />
-                    <!-- <p>- Click <span style="color: #F17515">here</span> to learn about CO2e statuses.</p> -->
-                </div>
-                </div>
-               
-                <div style="text-align: center;" class="col mt-5 subheadings">
-                    Visit Our Farm For Real World Data
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-3">
-                    <a href="http://www.staalbaek.dk"><img style="width: 75%; display: block; margin-left: auto; margin-right: auto;" src="./assets/staalbaeklogo.png"></img></a>
-                    </div>
-                    <div style="text-align: center;" class="col">
-                        <i class="bi bi-chevron-compact-down" style="font-size: 2rem; color: cornflowerblue;"></i>
-                    </div>
-                <div style="text-align: center;" class="col mt-5 subheadings">
-                    FARM BUSINESS OWNERS
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-3">
-                        <img style="width: 75%; display: block; margin-left: auto; margin-right: auto;"
-                            src="./assets/test2.jpg"></img>
-                    </div>
-                <div class="col just-text mt-3 d-flex justify-content-center custom-box" style="color:white">
-                    This section is for agricultural business, and environmentalists who own a farm.<br> 
-                    Looking for a way to reduce your CO2 footprint, reduce production costs and increase revenue.
-                </div>
-                <div class="col mt-3 text-center">
-                    What do <span style="color: #F17515">Farm Business owners</span>
-                    get using YourFootprint ?
-                </div>
-                <div class="col mt-3 d-flex justify-content-center">
-                    <img src="./assets/check.png" style="width: 15px; height: 15px;">
-                </div>
-                <div class="col d-flex justify-content-center mt-3 fst-italic myriad-lighter">
-                    An overview of their farms CO2e status <br />
-                    <!-- <p>- Click <span style="color: #F17515">here</span> to learn about CO2e statuses.</p> -->
-                </div>
-                <div class="col d-flex justify-content-center  mt-3">
-                    <img class="custom-img" src="./assets/weight.svg"></img>
-                </div>
-                <div class="col d-flex justify-content-center  mt-3 fst-italic myriad-lighter">
-                    CO2e reduction through our CO2e credit trading platform <br />
-                    <!-- <p>- Click <span style="color: #F17515">here</span> to learn about trading.</p> -->
-                </div>
-                <div class="col d-flex justify-content-center  mt-3">
-                    <img class="custom-img" src="./assets/shopfamilysvg.svg"></img>
-                </div>
-                <div class="col d-flex flex-column align-items-center mt-3 fst-italic myriad-lighter">
-                    Sustainability accounting for the future<br />
-                    <span style="color: #F17515">&nbsp;**This section requires a monthly subscription</span>
-                </div>
-                <div class="col d-flex justify-content-center mt-3">
-                    After taking YF Questionnaire, you can start using the benefits of the tool.
-                </div>
-
-                <!-- Company Customers -->
-                <div class="col crop mt-3">
-                <div class="col text-center subheadings" style="color:#424141">USERS</div>
-                    <img class="custom-img" src="./assets/t1.svg"></img>
-                </div>
-                
-                <div class="row d-flex justify-content-around">
-                
-                    <div class="d-flex align-items-center col-6 text-center custom-white white-boxes-double">
-                        
-                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-0">
-                        <img style="width: 100%; display: block; margin-left: auto; margin-right: auto;"
-                            src="./assets/test3.jpg"></img>
-                            
-                    </div>
-                        <!--Agricultural business and Landowners-->
-                        
-                    </div>
-                    <div class="d-flex align-items-center col-6 text-center custom-white white-boxes-double">
-                        
-                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-0">
-                        <img style="width: 100%; display: block; margin-left: auto; margin-right: auto;"
-                            src="./assets/test4.jpg"></img>
-                            
-                    </div>
-                        <!--Agricultural business and Landowners-->
-                        
-                    </div>
-                    <div class="d-flex align-items-center col-6 text-center custom-white white-boxes-double">
-                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-0">
-                        <img style="width: 100%; display: block; margin-left: auto; margin-right: auto;"
-                            src="./assets/test5.jpg"></img>
-                    </div>
-                        <!--SME's Small to Medium Business Enterprises -->
-                        
-                    </div>
-                </div>
-                <div class="col d-flex justify-content-center subheadings mt-5 text-center mt-2">
-                    The Consumer/ End User
-                </div>
-                <div class="col just-text mt-3 d-flex justify-content-center custom-box" style="color:white">
-                    Tired of not knowing where to look?<br>
-                    Skeptical about How & Why this is or isn't CO2e Neutral/Compensated? 
-                    Results you can trust.<br>
-                    Backed up by in-depth academic research<br>
-                    This puts accountability in your hands.
-                </div>
-                <div class="col text-center mt-3">
-                    What do <span style="color: #F17515">&nbsp;the pubilc&nbsp;</span> get using
-                    YourFootprint
-                </div>
-                <div class="col mt-3 d-flex justify-content-center">
-                    <img src="./assets/check.png" style="width: 15px; height: 15px;">
-                </div>
-                <div class="custom-padding col d-flex justify-content-center  mt-3 fst-italic myriad-lighter">
-                    Consumers can get solid information about CO2e neutral products that they
-                    buy from companies who are using YourFootprint. Plus fully transparent academic reporting on who, how and where the CO2e Credits are collected and calculated
-                </div>
-                <div class="col d-flex justify-content-center  mt-3">
-                    <img class="custom-img" src="./assets/boxy.svg"></img>
-                </div>
-                <div class="col d-flex justify-content-center  fst-italic myriad-lighter">
-                    <!-- <p>- Click <span style="color: #F17515">here</span> to learn about CO2e neutral product
-                        certification.</p><br />-->
-                    <span style="color: #F17515">**This section is FREE to use for The Consumer/End User.</span>
-                </div>
-                <div class="col d-flex justify-content-center  mt-5">
-                    <img class="custom-img" src="./assets/farmshop.svg"></img>
-                </div>
-                <div class="col subheadings d-flex justify-content-center mt-3 text-center">
-                    <br />
-                    Business Owners
-                </div>
-                <div class="col d-flex justify-content-center just-text custom-box" style="color:white;">
-                    Are you a business leader, looking for new and innovative ways to deal with your CO2?<br>
-                    Are you interested in your climate impact, as a small business.<br> Would you like to pass on the
-                    benefit of carbon reduction, to your customers? <br>Then this section is for you.
-                </div>
-                <div class="col mt-3 text-center">
-                    What do <span style="color: #F17515">&nbsp;Business Owners&nbsp;</span> get using
-                    YourFootprint ?
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <img src="./assets/check.png" style="width: 15px; height: 15px;">
-                </div>
-                <div class="col d-flex justify-content-center fst-italic myriad-lighter">
-                    - Sustainability branding
-                </div>
-                <div class="col d-flex justify-content-center m-5">
-                    <img style="width: 125px; display: block; margin-left: auto; margin-right: auto;"
-                        src="./assets/comp-whole.svg"></img>
-                </div>
-                <div class="col d-flex justify-content-center fst-italic myriad-lighter">
-                    - CO2e certification
-                </div>
-                <div class="col d-flex justify-content-center m-5">
-                    <img style="width: 125px; display: block; margin-left: auto; margin-right: auto;"
-                        src="./assets/orangelogo.svg"></img>
-                </div>
-                <div class="col d-flex justify-content-center fst-italic myriad-lighter">
-                    - CO2e reduction via CO2e credit trading & compensating.
-                </div>
-                <div class="col d-flex justify-content-center m-5">
-                    <img class="custom-img" src="./assets/shopwood.svg"></img>
-                </div>
-                <div class="col d-flex justify-content-center custom-padding fst-italic myriad-lighter mt-5">
-                    After completing the questionnaire, you will be redirected to the results page, where you can see an overview of your results, 
-                    plus a step-by-step guide on how to compensate CO2e emission and how to use the trading platform.
-                </div>
-                <div class="row d-flex flex-column custom-padding">
-                    <!--
-                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-3">
-                        <img style="width: 100%; display: block; margin-left: auto; margin-right: auto;"
-                            src="./assets/screen1.png"></img>
-                    </div>
-                    -->
-                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-3">
-                        <img style="width: 100%; display: block; margin-left: auto; margin-right: auto;"
-                            src="./assets/screen2.png"></img>
-                    </div>
-                    <!--
-                    <div class=" col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-3">
-                        <img style="width: 100%; display: block; margin-left: auto; margin-right: auto;"
-                            src="./assets/co2emissionsadmin.webp"></img>
-                    </div>
-                    -->
-                </div>
-                <div class="col fst-italic myriad-lighter mt-5 d-flex justify-content-center">
-                    - A tool to market your CO2e neutral status.
-                </div>
-                <div class="row d-flex flex-column custom-padding">
-                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-3">
-                        <img style="width: 100%; display: block; margin-left: auto; margin-right: auto;"
-                            src="./assets/screen1.png"></img>
-                    </div>
-                </div>
-                <div class="col fst-italic myriad-lighter mt-2 d-flex justify-content-center">
-                    <!--NOTE: THE PICTURE WILL CHANGE AND BE REPLACED WITH A REAL SPIDER DIAGRAM.-->
-                </div>
-                <div class="col fst-italic d-flex justify-content-center myriad-lighter mt-2">
-                    - Sustainability accounting for the future.<br />
-                    - Overview of your farms CO2e status.
-                </div>
-                <div class="col fst-italic d-flex justify-content-center myriad-lighter mt-5">
-                    <img class="custom-img" src="./assets/forest.svg"></img>
-                </div>
-                <div class="col subheadings text-center mt-2">
-                    <br />
-                    FOREST OWNERS
-                </div>
-                <div class="col custom-box d-flex justify-content-center just-text mt-3" style="color: white">
-                    Are you a serious industrial farmer, or do you own a substantial area of forestry.<br>
-                    Then this section is for you.<br> Using our system you can explore new opportunities and increase the
-                    value of large areas
-                    of your land.
-                </div>
-                <div class="col text-center mt-3">
-                    What does a <span style="color: #F17515">forest owner/industrial farmer</span> get using
-                    YourFootprint ?
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <img src="./assets/check.png" style="width: 15px; height: 15px;">
-                </div>
-                <div class="custom-list text-center mt-5">
-                    <div class="mt-5 text-center" style="font-size: 28px;"> How does this work ? <br /></div>
-                    <div class="myriad-lighter mt-3 custom-list-font">- Sign up to our system. <br /></div>
-                    <div class="myriad-lighter mt-3 custom-list-font">- Answer the questionnaire. <br /></div>
-                    <div class="myriad-lighter mt-3 custom-list-font">- Get your overview & CO2e credits and trade them in our system.</div>
-                    <div class="myriad-lighter mt-3 custom-list-font">- Complete the questionnaire</div>
-                    <div class="myriad-lighter mt-3 custom-list-font">- Get a step by step guide on using the trading system</div>
-						  <div class="text-center myriad-lighter mt-3 custom-list-font" style="font-size:38px;  color: #F17515">         START EARNING MONEY      </div>
-						  <div class="myriad-lighter mt-3 custom-list-font"> - Sustainability accounting in line with international GHG regulations.<br /></div>
-                   
-                </div>
-                <div class="col d-flex justify-content-center mt-5">
-                    <img class="custom-img" src="./assets/trading.svg"></img>
-                </div>
-                <div class="col d-flex align-items-center flex-column fst-italic custom-padding myriad-lighter"
-                    style="color: #F17515">
-                    **YourFootprint gets a % each time you earn money from your forest / land via YourFootprint.<br />
-                    The amount depends on the size of your forest / land that is saved in our system.<br /><br />
-                    <div class="d-flex flex-column align-items-center"> **0 - 100 Hectar = %5<br />
-                        **100 - 200 Hectar = %4<br />
-                        **200 - 300 Hectar = %3<br />
-                        **300 - 400 Hectar = %2<br />
-                        **500 - + Hectar = %1
-                    </div>
-                </div>
-
-                <div class="col d-flex justify-content-center mt-5">
-                    <img class="custom-img" src="./assets/company.svg"></img>
-                </div>
-                <div class="col subheadings text-center mt-5">
-                    <br />
-                    BUSINESS
-                </div>
-                <div class="col just-text custom-box d-flex justify-content-center mt-5" style="color:white">
-                    Are you a small / medium sized business, and a first mover in your sector?<br> We can provide you with a
-                    fully certified scope 3 life cycle analysis
-                    for your business! <br>Are you a national company under pressure from regulation and the financial
-                    sector to declare your CO2e
-                    activities including your upstream and downstream (SCOPE 3) in 2025/26?<br>
-                    Our solution provides piece-of-mind moving forward!
-                    
-                </div>
-                <div class="col text-center mt-3">
-                    What do <span style="color: #F17515">&nbsp;company owners&nbsp;
-                    </span> users get using YourFootprint ?
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <img src="./assets/check.png" style="width: 15px; height: 15px;">
-                </div>
-                <div class="col fst-italic d-flex justify-content-center myriad-lighter mt-5">
-                    - Sustainability branding.<br />
-                    - CO2e certification.<br />
-                    - CO2e reduction via credit trading.<br />
-                    - A tool to market their CO2e neutral status.<br />
-                    - Sustainability accounting for the future.<br />
-                    <!-- </div>
-                <div style="color: #F17515;" class="col custom-padding text-center fst-italic myriad-lighter mt-5">
-                    Sign up and answer the questionnaire; And our team will send you an email with detailed information
-                    to go further.
-                </div> -->
-
-                </div>
-						<div class="col d-flex justify-content-center m-5">
-                    <img style="width: 125px; display: block; margin-left: auto; margin-right: auto;"
-                        src="./assets/orangelogo.svg"></img>
-                	</div>
-
-            </div>
-
-        </div>
-
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-            crossorigin="anonymous"></script>
 </body>
-
 </html>
