@@ -11,6 +11,7 @@ window.YFP_LANGS = [
   {
     "code": "en",
     "flag": "🇬🇧",
+    "flagSrc": "./assets/flags/gb.svg",
     "native": "English",
     "english": "English",
     "rtl": false
@@ -18,6 +19,7 @@ window.YFP_LANGS = [
   {
     "code": "da",
     "flag": "🇩🇰",
+    "flagSrc": "./assets/flags/dk.svg",
     "native": "Dansk",
     "english": "Danish",
     "rtl": false
@@ -25,6 +27,7 @@ window.YFP_LANGS = [
   {
     "code": "sv",
     "flag": "🇸🇪",
+    "flagSrc": "./assets/flags/se.svg",
     "native": "Svenska",
     "english": "Swedish",
     "rtl": false
@@ -32,6 +35,7 @@ window.YFP_LANGS = [
   {
     "code": "nl",
     "flag": "🇳🇱",
+    "flagSrc": "./assets/flags/nl.svg",
     "native": "Nederlands",
     "english": "Dutch",
     "rtl": false
@@ -39,6 +43,7 @@ window.YFP_LANGS = [
   {
     "code": "ur",
     "flag": "🇵🇰",
+    "flagSrc": "./assets/flags/pk.svg",
     "native": "اردو",
     "english": "Urdu",
     "rtl": true
@@ -46,6 +51,7 @@ window.YFP_LANGS = [
   {
     "code": "hi",
     "flag": "🇮🇳",
+    "flagSrc": "./assets/flags/in.svg",
     "native": "हिन्दी",
     "english": "Hindi",
     "rtl": false
@@ -53,6 +59,7 @@ window.YFP_LANGS = [
   {
     "code": "lg",
     "flag": "🇺🇬",
+    "flagSrc": "./assets/flags/ug.svg",
     "native": "Luganda",
     "english": "Luganda",
     "rtl": false,
@@ -61,6 +68,7 @@ window.YFP_LANGS = [
   {
     "code": "sw",
     "flag": "🇰🇪",
+    "flagSrc": "./assets/flags/ke.svg",
     "native": "Kiswahili",
     "english": "Swahili",
     "rtl": false
@@ -68,6 +76,7 @@ window.YFP_LANGS = [
   {
     "code": "bem",
     "flag": "🇿🇲",
+    "flagSrc": "./assets/flags/zm.svg",
     "native": "Chibemba",
     "english": "Bemba",
     "rtl": false,
@@ -76,6 +85,7 @@ window.YFP_LANGS = [
   {
     "code": "ha",
     "flag": "🇳🇬",
+    "flagSrc": "./assets/flags/ng.svg",
     "native": "Hausa",
     "english": "Hausa",
     "rtl": false,

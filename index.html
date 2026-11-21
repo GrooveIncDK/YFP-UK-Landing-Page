@@ -194,7 +194,7 @@
      photo and the white sections below. */
   .lang-switch{position:fixed; top:20px; right:20px; z-index:80; font-size:1rem}
   .lang-switch-btn{display:flex; align-items:center; gap:7px; background:#fff; border:1px solid var(--line); border-radius:999px; padding:9px 16px; font-weight:700; font-size:.85rem; color:var(--ink); box-shadow:0 4px 18px rgba(0,0,0,.22); cursor:pointer; font-family:inherit}
-  .lang-switch-btn .flag{font-size:1.1rem; line-height:1}
+  .lang-switch-btn .flag{width:19px; height:14px; border-radius:2px; box-shadow:0 0 0 1px rgba(0,0,0,.12); object-fit:cover; flex-shrink:0}
   .lang-switch-btn .chev{font-size:.6rem; color:var(--muted); transition:transform .15s; margin-left:1px}
   .lang-switch.open .lang-switch-btn .chev{transform:rotate(180deg)}
   .lang-panel{position:absolute; top:calc(100% + 10px); right:0; width:290px; max-width:calc(100vw - 24px); background:#fff; border-radius:14px; box-shadow:0 16px 44px rgba(0,0,0,.24); border:1px solid var(--line); padding:14px 0; display:none; max-height:72vh; overflow-y:auto}
@@ -204,7 +204,7 @@
   .lang-panel-head .count{font-size:.72rem; color:var(--muted); white-space:nowrap}
   .lang-row{display:flex; align-items:center; gap:12px; width:100%; padding:9px 18px; background:none; border:0; text-align:left; cursor:pointer; font-family:inherit}
   .lang-row:hover{background:var(--paper)}
-  .lang-row .flag{font-size:1.3rem; line-height:1; flex-shrink:0}
+  .lang-row .flag{width:24px; height:18px; border-radius:2px; box-shadow:0 0 0 1px rgba(0,0,0,.12); object-fit:cover; flex-shrink:0}
   .lang-row .names{flex:1; min-width:0}
   .lang-row .native{display:block; font-size:.95rem; font-weight:700; color:var(--ink)}
   .lang-row .english{display:block; font-size:.76rem; color:var(--muted)}
@@ -232,7 +232,7 @@
        text via translations.js instead of navigating anywhere. -->
   <div class="lang-switch" id="langSwitch">
     <button class="lang-switch-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false">
-      <span class="flag" id="langBtnFlag">🇬🇧</span>
+      <img class="flag" id="langBtnFlag" src="./assets/flags/gb.svg" alt="">
       <span id="langBtnCode">EN</span>
       <span class="chev">▾</span>
     </button>
@@ -447,7 +447,7 @@
         row.setAttribute('role', 'menuitemradio');
         row.setAttribute('aria-checked', lang.code === activeCode ? 'true' : 'false');
         row.innerHTML =
-          '<span class="flag">' + lang.flag + '</span>' +
+          '<img class="flag" src="' + lang.flagSrc + '" alt="">' +
           '<span class="names"><span class="native">' + lang.native + '</span><span class="english">' + lang.english + '</span></span>' +
           (lang.code === activeCode ? '<span class="active-badge">Active</span>' : '<span class="caret">→</span>');
         row.addEventListener('click', function(){
@@ -470,7 +470,7 @@
       for (var i = 0; i < LANGS.length; i++) { if (LANGS[i].code === code) { lang = LANGS[i]; break; } }
       if (!lang) lang = LANGS[0];
       if (lang) {
-        btnFlag.textContent = lang.flag;
+        btnFlag.src = lang.flagSrc;
         btnCode.textContent = lang.code.toUpperCase();
       }
       document.documentElement.lang = code;
