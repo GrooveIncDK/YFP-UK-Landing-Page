@@ -95,6 +95,7 @@ window.YFP_LANGS = [
 
 window.YFP_I18N = {
   "en": {
+    "nav.demo": "Demo",
     "hero.h1": "Make sustainability pay for itself.",
     "hero.lede": "A CO2e measurement and trading platform for farmers, businesses and the people buying from them — built on the Green House Gas Protocol.",
     "hero.scrollCue": "Choose your region to get started ↓",
@@ -171,6 +172,7 @@ window.YFP_I18N = {
     "footer.poweredBy": "Powered by"
   },
   "da": {
+    "nav.demo": "Demo",
     "hero.h1": "Lad bæredygtighed betale for sig selv.",
     "hero.lede": "En CO2e-måle- og handelsplatform for landmænd, virksomheder og dem, der køber af dem — bygget på Green House Gas Protocol.",
     "hero.scrollCue": "Vælg din region for at komme i gang ↓",
@@ -247,6 +249,7 @@ window.YFP_I18N = {
     "footer.poweredBy": "Drevet af"
   },
   "sv": {
+    "nav.demo": "Demo",
     "hero.h1": "Låt hållbarhet betala för sig själv.",
     "hero.lede": "En CO2e-mätnings- och handelsplattform för lantbrukare, företag och de som köper av dem — byggd på Greenhouse Gas Protocol.",
     "hero.scrollCue": "Välj din region för att komma igång ↓",
@@ -323,6 +326,7 @@ window.YFP_I18N = {
     "footer.poweredBy": "Drivs av"
   },
   "nl": {
+    "nav.demo": "Demo",
     "hero.h1": "Laat duurzaamheid zichzelf terugbetalen.",
     "hero.lede": "Een CO2e-meet- en handelsplatform voor boeren, bedrijven en de mensen die van hen kopen — gebouwd op het Greenhouse Gas Protocol.",
     "hero.scrollCue": "Kies uw regio om te beginnen ↓",
@@ -399,6 +403,7 @@ window.YFP_I18N = {
     "footer.poweredBy": "Mogelijk gemaakt door"
   },
   "ur": {
+    "nav.demo": "ڈیمو",
     "hero.h1": "پائیداری کو خود اپنے لیے منافع بخش بنائیں۔",
     "hero.lede": "کسانوں، کاروباروں، اور ان سے خریداری کرنے والے لوگوں کے لیے ایک CO2e پیمائش اور تجارتی پلیٺ فارم — گرین ہاؤس گیس پروٹوکول پر مبنی۔",
     "hero.scrollCue": "شروع کرنے کے لیے اپنا خطہ منتخب کریں ↓",
@@ -475,6 +480,7 @@ window.YFP_I18N = {
     "footer.poweredBy": "کے ذریعے چلایا جاتا ہے"
   },
   "hi": {
+    "nav.demo": "डेमो",
     "hero.h1": "स्थिरता को खुद अपने लिए भुगतान करने दें।",
     "hero.lede": "किसानों, व्यवसायों और उनसे खरीदारी करने वाले लोगों के लिए एक CO2e मापन और व्यापार मंंं — ग्रीनहाउस गैस प्रोटोकॉल पर आधारित।",
     "hero.scrollCue": "शुरू करने के लिए अपना क्षेत्र चुनें ↓",
@@ -551,6 +557,7 @@ window.YFP_I18N = {
     "footer.poweredBy": "द्वारा संचालित"
   },
   "sw": {
+    "nav.demo": "Onyesho",
     "hero.h1": "Fanya uendelevu ujilipie wenyewe.",
     "hero.lede": "Jukwaa la kupima na kubadilishana CO2e kwa ajili ya wakulima, biashara, na watu wanaonunua kutoka kwao — lililojengwa kwa msingi wa Itifaki ya Gesi za Chafu (Green House Gas Protocol).",
     "hero.scrollCue": "Chagua eneo lako kuanza ↓",
@@ -627,6 +634,7 @@ window.YFP_I18N = {
     "footer.poweredBy": "Inaendeshwa na"
   },
   "lg": {
+    "nav.demo": "Ekyokulabirako",
     "hero.h1": "Kozesa obulamu obutuukirivu bwesasule byennyini.",
     "hero.lede": "Omukutu ogupima era ogusuubulwamu CO2e eri abalimi, bizinensi, n'abantu abagula gye bali — ogwazimbibwa ku Green House Gas Protocol.",
     "hero.scrollCue": "Londa ekitundu kyo okutandika ↓",
@@ -703,6 +711,7 @@ window.YFP_I18N = {
     "footer.poweredBy": "Ekolebwa"
   },
   "bem": {
+    "nav.demo": "Demo",
     "hero.h1": "Lekeni ukuba uwakosa (sustainability) kuilipile kuli uko bene.",
     "hero.lede": "Ipulatifomu ya kupima no kucita amakwebo ya CO2e ku balimi, imakampani, na bantu abo abaula kuli bene — yakuulwa pa Green House Gas Protocol.",
     "hero.scrollCue": "Saluni incende yenu ukutendeka ↓",
@@ -779,6 +788,7 @@ window.YFP_I18N = {
     "footer.poweredBy": "Yalendeshiwa na"
   },
   "ha": {
+    "nav.demo": "Nunawa",
     "hero.h1": "Bari ɗorewa ta biya kanta da kanta.",
     "hero.lede": "Dandamali na auna da ciniki na CO2e ga manoma, kasuwanci, da mutanen da ke saye daga gare su — wanda aka gina a kan Yarjejeniyar Iskar Gas ta Greenhouse (Green House Gas Protocol).",
     "hero.scrollCue": "Zaɓi yankinku don fara ↓",

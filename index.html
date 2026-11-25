@@ -192,7 +192,11 @@
      it stays reachable while scrolling the long landing page; its own
      opaque white panel + shadow keep it legible over both the dark hero
      photo and the white sections below. */
-  .lang-switch{position:fixed; top:20px; right:20px; z-index:80; font-size:1rem}
+  .lang-switch{position:fixed; top:20px; right:20px; z-index:80; font-size:1rem; display:flex; align-items:center; gap:10px}
+  /* Demo pill — sits left of the language pill (also in RTL), same pill look; links to the clickable app demo in ./demo/ */
+  html[dir=rtl] .lang-switch{flex-direction:row-reverse}
+  .demo-pill{display:flex; align-items:center; background:#fff; border:1px solid var(--line); border-radius:999px; padding:9px 16px; font-weight:700; font-size:.85rem; color:var(--ink); box-shadow:0 4px 18px rgba(0,0,0,.22); text-decoration:none; font-family:inherit; white-space:nowrap; line-height:normal; align-self:stretch}
+  .demo-pill:hover{background:var(--paper)}
   .lang-switch-btn{display:flex; align-items:center; gap:7px; background:#fff; border:1px solid var(--line); border-radius:999px; padding:9px 16px; font-weight:700; font-size:.85rem; color:var(--ink); box-shadow:0 4px 18px rgba(0,0,0,.22); cursor:pointer; font-family:inherit}
   .lang-switch-btn .flag{width:19px; height:14px; border-radius:2px; box-shadow:0 0 0 1px rgba(0,0,0,.12); object-fit:cover; flex-shrink:0}
   .lang-switch-btn .chev{font-size:.6rem; color:var(--muted); transition:transform .15s; margin-left:1px}
@@ -222,6 +226,7 @@
     .cta-band .panel{padding:28px 24px}
     .lang-switch{top:14px; right:14px}
     .lang-switch-btn{padding:7px 12px; font-size:.8rem}
+    .demo-pill{padding:7px 12px; font-size:.8rem}
   }
 </style>
 </head>
@@ -231,6 +236,7 @@
        live on the regional CO2e tools; wired below to swap data-i18n
        text via translations.js instead of navigating anywhere. -->
   <div class="lang-switch" id="langSwitch">
+    <a class="demo-pill" href="./demo/" data-i18n="nav.demo">Demo</a>
     <button class="lang-switch-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false">
       <img class="flag" id="langBtnFlag" src="./assets/flags/gb.svg" alt="">
       <span id="langBtnCode">EN</span>
