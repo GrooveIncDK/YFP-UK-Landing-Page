@@ -60,7 +60,7 @@
      stay legible over it. */
   .hero{
     position:relative; padding:96px 0 84px; text-align:center;
-    background-image: linear-gradient(rgba(8,14,10,.62), rgba(8,14,10,.72)), url(./assets/hero-bg.jpg);
+    background-image: linear-gradient(rgba(8,14,10,.62), rgba(8,14,10,.72)), url(./assets/hero-bg-1440.jpg);
     background-size:cover; background-position:center; background-attachment:fixed;
   }
   .hero .logo{width:460px; max-width:84%; margin:0 auto 34px; filter:drop-shadow(0 6px 26px rgba(0,0,0,.45))}
@@ -162,7 +162,7 @@
      brightness and only the text sits on a dark panel for contrast. */
   .cta-band{
     text-align:center; padding:96px 0; color:#fff; position:relative;
-    background-image: url(./assets/yfpcloud-bg.jpg);
+    background-image: url(./assets/yfpcloud-bg-1600.jpg);
     background-size:cover; background-position:center; background-attachment:fixed;
   }
   .cta-band .panel{display:inline-block; max-width:620px; background:rgba(10,8,2,.46); border-radius:16px; padding:40px 48px}
@@ -217,6 +217,9 @@
   .lang-row .caret{color:var(--muted); font-size:.95rem; flex-shrink:0}
 
   @media (max-width:760px){
+    /* Phone-sized background photos (low-bandwidth markets) */
+    .hero{background-image: linear-gradient(rgba(8,14,10,.62), rgba(8,14,10,.72)), url(./assets/hero-bg-1000.jpg)}
+    .cta-band{background-image: url(./assets/yfpcloud-bg-1000.jpg)}
     .pillars{grid-template-columns:1fr; gap:48px}
     .proof .wrap{flex-direction:column; text-align:center}
     .proof-text .section-label, .proof-text h2{text-align:center}
@@ -295,7 +298,7 @@
   <!-- Proof -->
   <div class="section alt proof">
     <div class="wrap">
-      <a class="proof-logo" href="http://www.staalbaek.dk" target="_blank"><img src="./assets/staalbaeklogo.png" alt="Stålbæk Gård"></a>
+      <a class="proof-logo" href="http://www.staalbaek.dk" target="_blank"><img src="./assets/staalbaeklogo-800.webp" alt="Stålbæk Gård"></a>
       <div class="proof-text">
         <span class="section-label" data-i18n="proof.label">Real-World Data</span>
         <h2 data-i18n="proof.h2">Visit our farm for real-world data.</h2>
@@ -428,7 +431,7 @@
       <p class="powered-by">
         <span data-i18n="footer.poweredBy">Powered by</span>
         <a href="https://www.grooveinc.dk" rel="noopener" target="_blank">
-          <img alt="Groove Inc" src="./assets/groove-logo.png">
+          <img alt="Groove Inc" src="./assets/groove-logo-80.png">
         </a>
       </p>
     </div>
